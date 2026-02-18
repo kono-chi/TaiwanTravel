@@ -1,0 +1,1913 @@
+/* ============================= */
+/* 基本設定 */
+/* ============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 0.88vw;
+    color: #000;
+    line-height: 1.8;
+    background-color: #F4F4F4;
+}
+
+/* ============================= */
+/* ヘッダー */
+/* ============================= */
+header {
+    position: relative;
+}
+
+.logo img {
+    width: 9.8vw;
+    height: auto;
+}
+
+.header-nav {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 90vw;
+    padding: 1.5vw 2.4vw 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.6vw;
+    list-style: none;
+    align-self: flex-end;
+}
+
+.nav-links a {
+    font-size: 1.72vw;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #0066cc;
+}
+.menu-title, #drawerBtn {
+    display: none;
+}
+
+/* ============================= */
+/* SP版 Header 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+
+    /* Header領域にロゴを追加 */
+    header::before {
+        content: "";
+        background: url("../images/pcLogoF.svg") no-repeat center/cover ;
+        display: block;
+        position: absolute;
+        top: 2.133vw;     /* 8px */
+        left: 3.2vw;      /* 12px */
+        z-index: 1001;
+
+        width: 29.6vw;    /* 111px */
+        height: 12vw;     /* 45px */
+    }
+
+    /* ドロワーボタン */
+    #drawerBtn {
+        display: block;
+        width: 12.8vw;    /* 48px */
+        height: 12.8vw;   /* 48px */
+        position: fixed;
+        top: 2.133vw;     /* 8px */
+        right: 2.133vw;   /* 8px */
+        z-index: 1001;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .sp-only.menu-title {
+        display: block;
+        color: #fff;
+        font-size: 6.4vw; /* 24px */
+        font-weight: bold;
+        margin-bottom: 8vw; /* 30px */
+        list-style: none;
+        border-bottom: none;
+    }
+
+    /* ドロワーメニュー本体 */
+    header .header-nav {
+        position: fixed;
+        top: 0;
+        right: -66.666vw; /* -250px */
+
+        left: auto;
+        transform: none;
+
+        width: 60vw;       /* 225px */
+        height: 100vh;
+        background-color: #000000b3;
+        z-index: 1000;
+        transition: right 0.3s ease;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        padding: 0 3.2vw;  /* 12px */
+    }
+
+    header .header-nav .logo {
+        margin: 0 0 2.666vw 0; /* 10px */
+        padding: 0;
+    }
+
+    header .header-nav .logo img {
+        width: 29.6vw;   /* 111px */
+        height: auto;
+        margin: 2.666vw; /* 10px */
+        display: block;
+    }
+
+    /* Menuタイトル */
+    header .header-nav .nav-links li.menu-title.sp-headerOnly {
+        display: block;
+        color: #fff;
+        font-size: 6.4vw;  /* 24px */
+        font-weight: bold;
+        list-style: none;
+        margin-bottom: 2.666vw; /* 10px */
+    }
+
+    header .header-nav .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 2.666vw; /* 10px */
+        width: 100%;
+        padding-left: 0;
+        margin-top: 0;
+    }
+
+    /* active時 */
+    header.active .header-nav {
+        right: 0;
+    }
+
+    /* Drawerアイコン */
+    header::after {
+        content: "";
+        display: block;
+        width: 12.8vw;   /* 48px */
+        height: 12.8vw;  /* 48px */
+        background: url(../images/drawerOpen.svg) no-repeat center / contain;
+        position: fixed;
+        top: 2.133vw;     /* 8px */
+        right: 2.133vw;   /* 8px */
+        z-index: 1000;
+        pointer-events: none;
+    }
+    header.active::after {
+        background: url(../images/drawerClose.svg) no-repeat center / contain;
+        position: fixed;
+    }
+
+    header .header-nav .nav-links {
+        flex-direction: column;
+        gap: 0;
+        padding: 16vw 0 16vw 0; /* 60px 0 60px */
+        text-align: center;
+    }
+
+    /* Menuタイトルの余白 */
+    header .header-nav .nav-links li.menu-title.sp-headerOnly {
+        margin-bottom: 8vw; /* 30px */
+    }
+
+    /* 通常のLIの間隔 */
+    header .header-nav .nav-links li {
+        margin-bottom: 2.133vw; /* 8px */
+    }
+
+    /* 特定項目の余白 */
+    header .header-nav .nav-links li:nth-child(3),
+    header .header-nav .nav-links li:nth-child(6),
+    header .header-nav .nav-links li:last-child {
+        margin-top: 5.333vw; /* 20px */
+    }
+
+    /* リンク */
+    header .header-nav .nav-links li a {
+        font-size: 5.333vw; /* 20px */
+        width: auto;
+        border-bottom: 0.1px solid #fff;
+        padding-bottom: 0;
+    }
+}
+
+/* ============================= */
+/* Heroセクション */
+/* ============================= */
+.hero {
+    width: 100vw;
+    aspect-ratio: 2732 / 1536;
+    position: relative;
+
+    background-image: url("../images/pcTop.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    transform: translate(-12.5vw, -1.5vw);
+}
+
+.hero h1 img {
+    width: 22vw;
+    height: auto;
+    display: block;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.header-sns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vw;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-sns img {
+    width: clamp(2.4vw, 2.4vw, 2.4vw);
+    height: auto;
+    display: block;
+}
+
+.hero .header-sns {
+    position: absolute;
+    left: 7%;
+    top: 78%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    z-index: 10;
+}
+
+.header-sns a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1vw, 0.6vw, 1.2vw);
+}
+
+.heroText {
+    position: absolute;
+    right: 7.54vw; /* 103px */
+    bottom: 1.46vw; /* 20px */
+
+    max-width: 29vw;
+    color: #ffffff;
+    font-size: 1.25vw;
+    line-height: 1.8;
+    text-align: justify;
+
+    z-index: 5;
+}
+/* ============================= */
+/* SP版 Heroセクション 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+
+    .hero {
+        height: 177.866vw;     /* 667px */
+        min-height: 177.866vw; /* 667px */
+    }
+
+    .hero {
+        width: 100vw;          /* 375px */
+        position: relative;
+
+        background-image: url("../images/spHero.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        transform: translate(0, -6.4vw); /* -24px */
+    }
+
+    .hero h1 img {
+        width: 53.066vw; /* 199px */
+        height: auto;
+        display: block;
+    }
+
+    .hero-content {
+        text-align: center;
+        z-index: 1;
+    }
+
+    .header-sns {
+        display: flex;
+        flex-direction: column;
+        gap: 2.666vw; /* 10px */
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-sns img {
+        width: 8.533vw; /* 32px */
+        height: auto;
+        display: block;
+    }
+
+    .hero .header-sns {
+        position: absolute;
+        left: 5.333vw;  /* 20px */
+        top: 138.666vw; /* 520px */
+        transform: translateY(-50%);
+        flex-direction: column;
+        z-index: 10;
+    }
+
+    .header-sns a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1vw; /* 3.75px */
+    }
+
+    .heroText {
+        position: absolute;
+        right: 4vw;  /* 15px */
+        bottom: 4vw; /* 15px */
+
+        max-width: 65.866vw; /* 247px */
+        color: #ffffff;
+        font-size: 3.2vw; /* 12px */
+        line-height: 1.8;
+
+        z-index: 5;
+    }
+}
+
+/* ============================= */
+/* パンくずリスト */
+/* ============================= */
+
+.breadcrumb {
+    /* 1. HTMLに直接書かれた ">" を消すために文字サイズを0にする */
+    font-size: 0; 
+    /* 配置の調整 */
+    max-width: 87.8vw;
+    margin: 0 auto;
+    padding: 0.7vw 1vw 0.8vw;
+    position: relative;
+}
+
+/* 2. リンクと各項目の文字サイズを個別に指定して復活 */
+.breadcrumb a, 
+.breadcrumb span {
+    font-size: 1.5vw; /* 元のサイズを指定 */
+    color: #666;
+    display: inline-block;
+}
+.breadcrumb a {
+    color: #000;
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* 3. 各項目の前に CSSで大きな ">" を表示させる */
+.breadcrumb span::before {
+    content: ">";       /* 表示する文字 */
+    display: inline-block;
+    margin: 0 0.4vw;    /* 左右の余白 */
+    font-size: 2vw;   /* リンク(1.5vw)より大きく設定 */
+    color: #000;        /* 色の調整 */
+
+    vertical-align: middle;       /* 文字列との垂直方向の中央合わせ */
+    line-height: 1;               /* 記号自身の持つ上下の余白を最小化 */
+
+    transform: translateY(-0.5vw); 
+}
+
+/* 下線の装飾（元のデザインを維持） */
+.breadcrumb::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0vw;
+    width: 100vw;
+    height: 0.08vw;
+    background-color: #000;
+    transform: translateX(-50%);
+}
+
+/* ============================= */
+/* SP版 パンくずリスト 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    .breadcrumb {
+        padding: 0.5vw 0; /* 上下のパディング */
+        margin: 0 5.3vw;  /* 左右に余白（左詰め） */
+        max-width: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative; /* 下線の基準にする */
+        overflow: visible;  /* 線がはみ出てもレイアウトを壊さないようにする */
+    }
+
+    /* 下線の修正：ヒーローセクションをズラさない設定 */
+    .breadcrumb::after {
+        content: "";
+        position: absolute;
+        left: -5.3vw;     /* marginで空けた分を左に戻して画面端に合わせる */
+        bottom: 0;
+        width: 100vw;    /* 画面いっぱいの線 */
+        height: 0.26vw;
+        background-color: #000;
+        transform: none;  /* 中央寄せの命令を解除 */
+        pointer-events: none; /* 線がクリックを邪魔しないようにする */
+    }
+
+    /* 以下、文字の表示設定（前回と同じ） */
+    .breadcrumb a, 
+    .breadcrumb span {
+        font-size: 4.2vw;
+    }
+
+    .breadcrumb span::before {
+        font-size: 4.3vw;
+        transform: translateY(-1vw); 
+    }
+
+    .breadcrumb > a:first-child {
+        font-size: 0;
+        position: relative;
+    }
+
+    .breadcrumb > a:first-child::after { 
+        content: "Top";
+        font-size: 4.2vw;
+        position: static;
+    }
+}
+
+/* ============================= */
+/* セクション共通 */
+/* ============================= */
+.sec01, .sec02, .sec03 {
+    max-width: 87.8vw;
+    margin: 0 auto;
+    background-color: #F4F4F4;
+}
+
+/* セクションタイトル共通スタイル */
+h3 {
+    font-size: 1.76vw;
+    margin: 0 1.46vw 1.46vw;
+    position: relative;
+    width: 100%;
+    max-width: 38.8vw;
+    text-align: center;
+    padding: 2.49vw 0 1.76vw;
+}
+
+.section-title {
+    font-size: 3.51vw;
+    font-weight: normal;
+    text-align: center;
+    margin: 0 1.46vw 1.46vw;
+    width: 100%;
+    max-width: 38.8vw;
+    height: auto;
+    position: relative;
+    display: block;
+    padding: 2.49vw 0 1.76vw;
+    z-index: 2;
+}
+
+h3::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url(../images/SecDec.png) no-repeat center/cover;
+    width: 38.8vw;
+    height: 7.03vw;
+    top: 1.46vw;
+}
+
+.title-sub {
+    font-size: 1.76vw;
+    padding-left: 0.73vw;
+}
+
+h3 span {
+    font-size: 12px;
+    padding-left: 0.73vw;
+}
+
+.innerWrap {
+    display: flex;
+    margin-bottom: 5.8vw;
+    justify-content: space-between;
+}
+
+/* ============================= */
+/* Sec01(Attractionセクション) */
+/* ============================= */
+
+.sec01 {
+    max-width: 87.8vw;
+    margin: 0 auto;
+    background-color: #F4F4F4;
+}
+
+/* スポットごとの親コンテナ - Flexboxベース */
+.attraction-unit {
+    display: flex;
+    flex-direction: column;
+    gap: 2.9vw;
+    margin-bottom: 5.8vw;
+}
+
+/* スポットタイトル */
+.spotTitle {
+    font-size: 2.6vw;
+    font-weight: bold;
+    letter-spacing: 0.5em;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+/* メインコンテンツ行(画像 + 説明) */
+.attraction-visual,
+.attraction-info {
+    display: flex;
+    gap: 4.4vw;
+}
+
+.attraction-visual {
+    align-items: flex-start;
+}
+
+.attraction-info {
+    align-items: flex-start;
+}
+
+/* メイン画像 - 600×360px (1366px基準) */
+.main-img {
+    flex-shrink: 0;
+}
+
+.main-img img {
+    width: 43.9vw;
+    height: 26.4vw;
+    object-fit: cover;
+    display: block;
+}
+
+/* サブ画像コンテナ - 2枚横並び、合計600px幅 */
+.sub-imgs {
+    display: flex;
+    gap: 1.5vw;
+    flex-shrink: 0;
+}
+
+.sub-imgs img {
+    width: 21.2vw;
+    height: 12.2vw;
+    object-fit: cover;
+}
+
+/* 右側の説明ボックス(メイン) - 500×360px */
+.info-box.description {
+    width: 36.6vw;
+    height: 26.4vw;
+    background-color: #6CBAD833;
+    padding: 3.1vw;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: 0.01vw;
+    box-sizing: border-box;
+}
+
+/* 右側の説明ボックス(サブ) - 500×167px */
+.info-box.note {
+    width: 36.6vw;
+    height: 12.2vw;
+    background-color: #6CBAD833;
+    padding: 3.1vw;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: 0.01vw;
+    box-sizing: border-box;
+}
+
+.info-box p {
+    font-size: 1.4vw;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 特定の箱(center-box)の中央寄せ */
+.info-box.center-box {
+    align-items: center;
+    text-align: center;
+}
+
+/* 営業時間(strong)の調整 */
+.info-box strong {
+    display: block;
+    text-align: center;
+    margin-top: 1.1vw;
+    font-weight: bold;
+}
+
+.business-hours {
+    margin-top: 0.5vw;
+}
+
+/* セクション区切り線 */
+.section-divider {
+    border: none;
+    border-top: 1px solid #000;
+    width: 30.01vw;
+    margin: 2.92vw auto 2.92vw; /* 40px */
+    display: block;
+}
+
+/* ============================= */
+/* SP版 sec01 専用スタイル (768px以下) */
+/* ============================= */
+
+/* ※コメントのpxは画面幅768pxに対してのサイズ */
+@media screen and (max-width: 768px) {
+    /* Sec01全体 */
+    .sec01 {
+        max-width: 100vw;
+        margin: 0 auto;
+        padding: 0 10.67vw; /* 左右に40pxの余白 (768-295=80, 80/2=40) */
+    }
+
+    /* セクションタイトル - Sec02/03と同様の実装 */
+    .sec01 .section-title {
+        font-size: 6.4vw; /* 24px */
+        width: 58.67vw; /* 220px */
+        height: auto;
+        margin: 0 auto 10.67vw; /* 40px下余白 */
+        padding: 0;
+        text-align: center;
+        position: relative;
+    }
+
+    .sec01 .section-title::before {
+        width: 58.67vw; /* 220px */
+        height: 10.67vw; /* 40px */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .sec01 .title-sub {
+        font-size: 3.2vw; /* 12px */
+        padding-left: 2.67vw; /* 10px */
+    }
+
+    /* スポットタイトル */
+    .sec01 .spotTitle {
+        font-size: 4.8vw; /* 18px */
+        font-weight: bold;
+        letter-spacing: 6.4vw;
+        text-align: center;
+        margin-bottom: 8vw; /* 30px - タイトルとメイン画像の間隔 */
+    }
+
+    /* attraction-unitを縦並びに変更 */
+    .sec01 .attraction-unit {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 10.67vw; /* 40px - 各スポット間の余白 */
+    }
+
+    /* attraction-visualを縦並びに */
+    .sec01 .attraction-visual {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    /* メイン画像 - 295×221 */
+    .sec01 .main-img {
+        width: 78.67vw; /* 295px */
+        height: 58.93vw; /* 221px */
+        margin-bottom: 5.33vw; /* 20px */
+    }
+
+    .sec01 .main-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        content: url('../images/spSec010101.png'); /* SP版画像に差し替え */
+    }
+
+    /* 九份の2枚目、3枚目の画像差し替え */
+    .sec01 .jiufen .sub-imgs img:nth-child(1) {
+        content: url('../images/spSec010102.png');
+    }
+
+    .sec01 .jiufen .sub-imgs img:nth-child(2) {
+        content: url('../images/spSec010103.png');
+    }
+
+    /* 台北101のメイン画像差し替え */
+    .sec01 .taipei101 .main-img img {
+        content: url('../images/spSec010201.png');
+    }
+
+    /* 台北101の2枚目、3枚目の画像差し替え */
+    .sec01 .taipei101 .sub-imgs img:nth-child(1) {
+        content: url('../images/spSec010202.png');
+    }
+
+    .sec01 .taipei101 .sub-imgs img:nth-child(2) {
+        content: url('../images/spSec010203.png');
+    }
+
+    /* メイン説明ボックス - 295×248.1 */
+    .sec01 .info-box.description {
+        width: 78.67vw; /* 295px */
+        height: 66.16vw; /* 248.1px */
+        background-color: #6CBAD833;
+        padding: 2.13vw 9.6vw; /* 36px 8px */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5.33vw; /* 20px */
+    }
+
+    .sec01 .info-box.description p {
+        font-size: 3.2vw; /* 12px */
+        line-height: 1.6;
+        text-align: left;
+    }
+
+    /* attraction-infoを縦並びに */
+    .sec01 .attraction-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    /* サブ画像コンテナ - 2枚横並び、各295×225の領域 */
+    .sec01 .sub-imgs {
+        display: flex;
+        gap: 1.33vw; /* 5px */
+        width: 78.67vw; /* 295px */
+        height: 60vw; /* 225px */
+        margin-bottom: 5.33vw; /* 375pxで20px */
+        justify-content: space-between;
+    }
+
+    .sec01 .sub-imgs img {
+        width: 38.67vw; /* 145px */
+        height: 60vw; /* 225px */
+        object-fit: cover;
+    }
+
+    /* サブ説明ボックス - 295×53 */
+    .sec01 .info-box.note {
+        width: 78.67vw; /* 295px */
+        height: 14.13vw; /* 53px */
+        background-color: #6CBAD833;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 8vw; /* 30px */
+    }
+
+    .sec01 .info-box.note p {
+        font-size: 3.2vw; /* 12px */
+        line-height: 1.4;
+        margin: 0;
+        text-align: center;
+    }
+
+    .sec01 .info-box.note .business-hours {
+        margin-top: 1.33vw; /* 5px */
+    }
+
+    .sec01 .info-box.note strong {
+        display: inline;
+        text-align: center;
+        margin-top: 0;
+        font-size: 3.2vw; /* 12px */
+    }
+
+    /* center-boxクラスの上書き */
+    .sec01 .info-box.center-box {
+        align-items: center;
+        text-align: center;
+    }
+
+    /* セクション区切り線 */
+    .sec01 .section-divider {
+        width: 58.67vw; /* 220px */
+        margin: 10.67vw auto; /* 40px上下 - スポット間の区切りを明確に */
+    }
+}
+
+/* ============================= */
+/* Sec02セクション(夜市) */
+/* ============================= */
+.sec02.nightmarket {
+    max-width: 100vw;
+    margin: 0 auto;
+    background-color: #F4F4F4;
+    position: relative;
+}
+
+/* Sec02ヘッダー(タイトルと装飾) */
+.sec02.nightmarket .section-title {
+    font-size: 3.51vw; /* 48px ÷ 1366px */
+    font-weight: normal;
+    text-align: center;
+    margin: 1.46vw 7.54vw 5.86vw auto; /* 20px, 103px, 80px相当 */
+    width: 38.8vw; /* 530px ÷ 1366px */
+    height: 7.03vw; /* 96px ÷ 1366px */
+    position: relative;
+    display: block;
+    z-index: 2;
+}
+
+
+.sec02.nightmarket .title-sub {
+    font-size: 1.76vw; /* 24px ÷ 1366px */
+    padding-left: 0.73vw; /* 10px ÷ 1366px */
+}
+
+/* Sec02コンテナ(2x2グリッド) */
+.sec02-container {
+    display: grid;
+    grid-template-columns: 30.75vw 39.53vw; /* 420px, 540px ÷ 1366px */
+    grid-template-rows: 19.33vw 19.33vw; /* 264px ÷ 1366px */
+    column-gap: 11.71vw; /* 160px ÷ 1366px */
+    row-gap: 10.25vw; /* 140px ÷ 1366px */
+    margin-left: 10.47vw; /* 143px ÷ 1366px */
+    margin-right: 10.47vw; /* 143px ÷ 1366px */
+}
+
+/* 左上:解説グリッド */
+.sec02-description-box {
+    grid-column: 1;
+    grid-row: 1;
+    width: 30.75vw; /* 420px ÷ 1366px */
+    height: 19.33vw; /* 264px ÷ 1366px */
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.46vw; /* 20px ÷ 1366px */
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* 右上:写真 */
+.sec02-photo-top {
+    grid-column: 2;
+    grid-row: 1;
+    width: 39.53vw; /* 540px ÷ 1366px */
+    height: 19.33vw; /* 264px ÷ 1366px */
+}
+
+.sec02-photo-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 左下:モーダルボタングリッド */
+.sec02-buttons-grid {
+    grid-column: 1;
+    grid-row: 2;
+    width: 30.75vw; /* 420px ÷ 1366px */
+    height: 19.33vw; /* 264px ÷ 1366px */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 3.51vw 2.78vw; /* 48px, 38px ÷ 1366px */
+}
+
+/* ボタンスタイル */
+.sec02-button {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/pcsec02frame.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.32vw; /* 18px ÷ 1366px */
+    font-weight: bold;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    color: #000;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.sec02-button:hover {
+    opacity: 0.8;
+}
+
+/* 右下:写真 */
+.sec02-photo-bottom {
+    grid-column: 2;
+    grid-row: 2;
+    width: 39.53vw; /* 540px ÷ 1366px */
+    height: 19.33vw; /* 264px ÷ 1366px */
+}
+
+.sec02-photo-bottom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sec02区切り線 */
+.sec02-divider {
+    width: 35.14vw; /* 480px ÷ 1366px */
+    height: 1px;
+    background-color: #000;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 5.86vw 0; /* 80px ÷ 1366px */
+}
+
+/* ============================= */
+/* SP版 sec02 専用スタイル (768px以下) */
+/* ============================= */
+@media screen and (max-width: 768px) {
+  
+    /* セクションタイトル - 220×40、装飾内に配置 */
+    .sec02.nightmarket .section-title {
+        width: 58.67vw;
+        max-width: 58.67vw;
+        height: 10.67vw;
+        font-size: 6.4vw;
+        margin: 0 auto 10.67vw auto;
+        padding: 0 0 2.13vw 0;
+        text-align: center;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        position: relative;
+        left: 0;
+        right: 0;
+        transform: none;
+        box-sizing: border-box;
+    }
+
+    /* タイトル装飾 - 220px幅に合わせて縮小 */
+    .sec02.nightmarket .section-title::before {
+        width: 58.67vw;
+        height: 10.67vw;
+        top: 0;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        margin: 0;
+    }
+
+    .sec02.nightmarket .title-sub {
+        font-size: 3.2vw;
+        padding-left: 0.8vw;
+        padding-bottom: 0;
+    }
+
+    /* sec02全体 */
+    .sec02 {
+        max-width: 100%;
+        padding: 8vw 5.33vw 0 5.33vw;
+    }
+
+    /* sec02-container - 縦並びレイアウト */
+    .sec02-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8vw;
+        width: 100%;
+        max-width: 100vw;
+        margin: 0 auto;
+    }
+
+    /* 解説ボックス - 223×81.6 */
+    .sec02-description-box {
+        width: 59.2vw;
+        height: 42.24vw;
+        min-height: 42.24vw;
+        margin: 0;
+        font-size: 3.2vw;
+        line-height: 1.6;
+        text-align: left;
+        padding: 0;
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    /* 上部写真 - 335×187.19 */
+    .sec02-photo-top {
+        width: 48.8vw;
+        height: 32.53vw;
+        margin: 0;
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .sec02-photo-top img {
+        width: 48.8vw;
+        height: 32.53vw;
+        object-fit: cover;
+    }
+
+    /* ボタングリッド - 2×2グリッド */
+    .sec02-buttons-grid {
+        width: 78.67vw;
+        height: 34.13vw;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 8.53vw 8vw;
+        margin: 0;
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    /* ボタンスタイル - 160×79 */
+    .sec02-button {
+        width: 35.07vw;
+        height: 12.8vw;
+        font-size: 3.2vw;
+        background-image: url('../images/pcsec02frame.png');
+        background-size: 100% 100%;
+    }
+
+    /* 下部写真 - 335×187.19 */
+    .sec02-photo-bottom {
+        width: 48.8vw;
+        height: 32.53vw;
+        margin: 0;
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    /* Sec02区切り線 - 223px幅、中央配置 */
+    .sec02-divider {
+        width: 59.47vw !important;
+        margin: 10.67vw auto 10.67vw;
+        left: auto;
+        transform: none;
+    }
+
+    /* 上部写真をSP版に差し替え */
+    .sec02-photo-top img[src*="pcSec020101.png"] {
+        content: url("../images/spSec020101.png");
+    }
+
+    /* 下部写真をSP版に差し替え */
+    .sec02-photo-bottom img[src*="pcSec020102.png"] {
+        content: url("../images/spSec020102.png");
+    }
+}
+
+/* ============================= */
+/* モーダル(NightMarket用) - PC版 */
+/* ============================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 44.22vw;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+
+.modal-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 44.22vw; /* 604px ÷ 1366px */
+    background-color: rgba(1, 128, 190, 0.9);
+    z-index: 10000;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.46vw; /* 20px ÷ 1366px */
+    right: 1.46vw; /* 20px ÷ 1366px */
+    width: 2.64vw; /* 36px ÷ 1366px */
+    height: 2.64vw; /* 36px ÷ 1366px */
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.modal-close:hover {
+    opacity: 0.7;
+}
+
+/* モーダルタイトル */
+.modal-title {
+    position: absolute;
+    top: 1.46vw; /* 20px ÷ 1366px */
+    left: 7.54vw; /* 103px ÷ 1366px */
+    font-size: 2.64vw; /* 36px ÷ 1366px */
+    font-weight: bold;
+    color: #fff;
+}
+
+/* モーダル画像コンテナ */
+.modal-images {
+    position: absolute;
+    top: 7.03vw; /* 96px ÷ 1366px */
+    left: 7.54vw; /* 103px ÷ 1366px */
+    display: flex;
+    gap: 4.39vw; /* 60px ÷ 1366px */
+}
+
+.modal-image {
+    width: 43.92vw; /* 600px ÷ 1366px */
+    height: 34.26vw; /* 468px ÷ 1366px */
+    object-fit: cover;
+}
+
+/* モーダル説明テキスト(上部グリッド) */
+.modal-text {
+    position: absolute;
+    top: 7.03vw; /* 96px ÷ 1366px */
+    left: 55.86vw; /* 763px ÷ 1366px (103 + 600 + 60) */
+    width: 36.6vw; /* 500px ÷ 1366px */
+    height: 14.06vw; /* 192px ÷ 1366px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.46vw; /* 20px ÷ 1366px */
+    color: #fff;
+    line-height: 1.6;
+    text-align: left;
+    padding: 0 1.46vw; /* 20px ÷ 1366px */
+}
+
+/* モーダル営業時間(下部) */
+.modal-description {
+    position: absolute;
+    top: 24.02vw; /* calc(96px + 192px + 40px) ÷ 1366px = 328px */
+    left: 55.86vw; /* 763px ÷ 1366px */
+    right: 7.54vw; /* 103px ÷ 1366px */
+    bottom: 2.93vw; /* 40px ÷ 1366px ※左の画像下端と同じ高さ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.46vw; /* 20px ÷ 1366px */
+    color: #fff;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ============================= */
+/* SP版モーダルスタイル (768px以下) */
+/* ============================= */
+@media screen and (max-width: 768px) {
+    /* SP版モーダル - 768×668.2 */
+    .modal-overlay {
+        display: none;
+        width: 100vw;
+        height: 178.19vw;
+    }
+
+    .modal-content {
+        width: 100vw;
+        height: 178.19vw;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* JavaScriptでdisplay:blockにされた時の対応 */
+    .modal-content[style*="display: block"] {
+        display: flex !important;
+    }
+
+    /* モーダルタイトル - 24px、375pxで上から40px */
+    .modal-title {
+        position: static;
+        font-size: 6.4vw;
+        margin-top: 10.67vw; /* 375pxで40px */
+        margin-bottom: 5.33vw;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* モーダル画像 - 335×223、中央配置 */
+    .modal-images {
+        position: static;
+        width: 89.33vw;
+        height: 59.47vw;
+        margin: 0 auto 5.33vw auto;
+        display: block;
+    }
+
+    .modal-image {
+        width: 89.33vw;
+        height: 59.47vw;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* モーダル説明テキスト - 303×115.2、中央配置 */
+    .modal-text {
+        position: static;
+        width: 80.8vw;
+        height: 30.72vw;
+        margin: 0 auto 5.33vw auto;
+        font-size: 3.2vw;
+        line-height: 1.6;
+        text-align: left;
+        padding: 0;
+        overflow-y: auto;
+    }
+
+    /* モーダル営業時間 - 100×154、中央配置、375pxで下から40px */
+    .modal-description {
+        position: static;
+        width: 26.67vw;
+        height: 41.07vw;
+        margin: 0 auto 10.67vw auto; /* 375pxで下から40px */
+        font-size: 3.2vw;
+        line-height: 1.6;
+        text-align: center;
+        padding: 0;
+        overflow-y: auto;
+    }
+
+    /* モーダル閉じるボタン */
+    .modal-close {
+        top: 2.67vw;
+        right: 2.67vw;
+        width: 6.4vw;
+        height: 6.4vw;
+    }
+}
+
+/* ============================= */
+/* Accessセクション */
+/* ============================= */
+
+.sec03 {
+    max-width: 87.8vw;
+    margin: 0 auto 5.8vw;
+    background-color: #F4F4F4;
+    line-height: 1.6;
+}
+
+.sec03 h3::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url(../images/SecDec.png) no-repeat center/cover;
+    width: 38.8vw;
+    height: 7.03vw;
+    top: 1.76vw;
+}
+
+.sec03 h4 {
+    width: 30.75vw;
+    font-size: 1.76vw;
+    padding-top:2.93vw;
+    padding-bottom: 2.93vw;
+    margin-left: 5.49vw;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    margin-bottom: 5.8vw;
+}
+
+.sec03 img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.sec03 .innerWrap {
+    padding: 0 5.8vw;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.46vw;
+}
+
+/* アクセス画像 */
+.sec03 .accessImg img {
+    padding: 0 1.46vw;
+    height: 24.6vw;
+    margin-bottom: 5.8vw;
+}
+
+.accessDetail {
+    text-align: center;
+    max-width: 46.1%;
+    padding: 2.93vw;
+}
+
+.accessDetail .name {
+    margin-bottom: 2.93vw;
+    font-size: 1.76vw;
+}
+
+.accessDetail .noto {
+    text-align: justify;
+    font-size: 1.76vw;
+}
+
+.accessDetail img {
+    margin-top: 5.8vw;
+    max-width: 18vw;
+}
+
+.SP {
+    padding-bottom: 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* ============================= */
+/* SP版 sec01 専用スタイル (768px以下) */
+/* ============================= */
+
+/* ※コメントのpxは画面幅768pxに対してのサイズ */
+@media screen and (max-width: 768px) {
+    /* Sec01全体 */
+    .sec01 {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 8vw 5.33vw 0 5.33vw; /* Sec02と同じpadding */
+    }
+
+    /* セクションタイトル - 220×40、装飾内に配置（Sec02/Sec03と完全に同じ） */
+    .sec01 .section-title {
+        width: 58.67vw; /* 220px */
+        max-width: 58.67vw;
+        height: 10.67vw; /* 40px */
+        font-size: 6.4vw; /* 24px */
+        margin: 0 auto 10.67vw auto; /* 下に40px（Sec02と同じ） */
+        padding: 0 0 2.13vw 0;
+        text-align: center;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        position: relative;
+        left: 0;
+        right: 0;
+        transform: none;
+        box-sizing: border-box;
+    }
+
+    /* タイトル装飾 - Sec02/Sec03と完全に同じ */
+    .sec01 .section-title::before {
+        width: 58.67vw; /* 220px */
+        height: 10.67vw; /* 40px */
+        top: 0;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        margin: 0;
+    }
+
+    .sec01 .title-sub {
+        font-size: 3.2vw; /* 12px */
+        padding-left: 0.8vw;
+        padding-bottom: 0;
+    }
+
+    /* スポットタイトル */
+    .sec01 .spotTitle {
+        font-size: 4.8vw; /* 18px */
+        font-weight: bold;
+        letter-spacing: 0.3em;
+        text-align: center;
+        margin-bottom: 5.33vw; /* 20px */
+    }
+
+    /* attraction-unitを縦並びに変更 */
+    .sec01 .attractionUnit {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 8vw; /* 30px */
+    }
+
+    /* attractionMainを縦並びに */
+    .sec01 .attractionMain {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    /* メイン画像 - 295×221 */
+    .sec01 .mainImg {
+        width: 78.67vw; /* 295px */
+        height: 58.93vw; /* 221px */
+        margin-bottom: 5.33vw; /* 20px */
+        flex-shrink: 0;
+    }
+
+    .sec01 .mainImg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 高美湿地のメイン画像差し替え */
+    .sec01 .attractionUnit:nth-child(2) .mainImg img {
+        content: url('images/spSec010101.png');
+    }
+
+    /* 彩虹眷村のメイン画像差し替え */
+    .sec01 .attractionUnit:nth-child(4) .mainImg img {
+        content: url('images/spSec010201.png');
+    }
+
+    /* メイン説明ボックス - 295×248.1 */
+    .sec01 .attractionMain .infoBox {
+        width: 78.67vw; /* 295px */
+        height: 66.16vw; /* 248.1px */
+        background-color: #6CBAD833;
+        padding: 4vw 4.7vw; /* 375pxで上下15px、左右36px (36/768*100) */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5.33vw; /* 20px */
+        box-sizing: border-box;
+    }
+
+    .sec01 .attractionMain .infoBox p {
+        font-size: 3.2vw; /* 12px */
+        line-height: 1.6;
+        text-align: left;
+        margin: 0;
+    }
+
+    /* attractionSubを縦並びに */
+    .sec01 .attractionSub {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    /* サブ画像 - 295×225の領域 */
+    .sec01 .subImg {
+        width: 78.67vw; /* 295px */
+        height: 60vw; /* 225px */
+        margin-bottom: 5.33vw; /* 375pxで20px */
+        flex-shrink: 0;
+    }
+
+    .sec01 .subImg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 高美湿地のサブ画像差し替え */
+    .sec01 .attractionUnit:nth-child(2) .subImg img {
+        content: url('images/spSec010102.png');
+    }
+
+    /* 彩虹眷村のサブ画像差し替え */
+    .sec01 .attractionUnit:nth-child(4) .subImg img {
+        content: url('images/spSec010202.png');
+    }
+
+    /* サブ説明ボックス - 295×53 */
+    .sec01 .attractionSub .infoBox {
+        width: 78.67vw; /* 295px */
+        height: 14.13vw; /* 53px */
+        background-color: #6CBAD833;
+        padding: 2.67vw 4.7vw; /* 375pxで上下10px、左右36px (36/768*100) */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 8vw; /* 30px */
+        box-sizing: border-box;
+    }
+
+    .sec01 .attractionSub .infoBox p {
+        font-size: 2.67vw; /* 10px */
+        line-height: 1.4;
+        margin: 0;
+        text-align: left;
+    }
+
+    /* セクション区切り線 - Sec02/Sec03と同じ223px幅 */
+    .sec01 .sectionDivider {
+        width: 59.47vw; /* 223px（Sec02と同じ） */
+        margin: 8vw auto; /* 30px上下 */
+        border: none;
+        border-top: 1px solid #999;
+    }
+}
+
+/* ============================= */
+/* SP版 sec03 専用スタイル (768px以下) */
+/* ============================= */
+
+/* ※コメントのpxは画面幅768pxに対してのサイズ */
+@media screen and (max-width: 768px) {
+    /* セクションサイズ幅の変更 */
+    .sec03 {
+        margin: 0 5.33vw 5.33vw; /* 20px */
+        max-width: 100vw;
+    }
+    .sec03 .innerWrap {
+        display: block;
+        width: 59.47vw; /* 223px */
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    /* sectionタイトルの変更 */
+    .sec03 .section-title {
+        margin: 0 auto 8vw; /* 30px */
+        font-size: 6.4vw; /* 24px */
+    }
+    .sec03 .section-title::before {
+        width: 58.66vw; /* 220px */
+        height: 10.66vw; /* 40px */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    /* サブタイトル「アクセス→交通手段」へ変更 */
+    .sec03 h3 span {
+        font-size: 0;
+    }
+    .sec03 h3 span::after {
+        content: "交通手段";
+        font-size: 3.2vw; /* 12px */
+    }
+    /* 個別レイアウト変更 */
+    .sec03 h4 {
+        font-size: 3.2vw; /* 12px */
+        margin: 0 auto;
+        text-align: center;
+        width: 59.47vw; /* 223px */
+        padding-top: 0;
+        margin-bottom: 10.66vw; /* 40px */
+    }
+    .sec03 .accessImg img {
+        padding: 0;
+        margin-bottom: 10.66vw; /* 40px */
+    }
+    .accessDetail {
+        max-width: 100%;
+        padding: 0;
+    }
+    .accessDetail .name,
+    .accessDetail .noto {
+        font-size: 3.2vw; /* 12px */
+    }
+    .accessDetail .name {
+        text-align: left;
+        margin-bottom: 3.2vw; /* 12px */
+    }
+    .accessDetail .noto {
+        margin-bottom: 5.33vw; /* 20px */
+    }
+    .accessDetail img {
+        margin-top: 0;
+        max-width: 25.33vw; /* 95px */
+        padding-bottom: 12vw; /* 45px */
+    }
+    /* icカードについて文字追加 */
+    .sec03 .mark::after {
+        content: "EASYCARD　";
+        font-weight: bold;
+    }
+}
+
+/* ============================= */
+/* フッター */
+/* ============================= */
+footer {
+    background-color: #007AB7;
+    color: #fff;
+    min-height: 35.8vw;
+}
+
+.footer-inner {
+    max-width: 88vw;
+    margin: 0 auto;
+    padding: 2.5vw 1vw 1.5vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.2vw;
+}
+
+.footer-flag {
+    text-align: center;
+    margin-bottom: 1vw;
+}
+
+.footer-flag img {
+    width: 4.45vw;
+}
+
+.footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-nav a {
+    position: relative;
+    display: inline-block;
+    width: 12vw;
+    color: #fff;
+    font-size: 1.5vw;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.footer-nav a::after {
+    content: "";
+    display: block;
+    width: 14vw;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-logo img {
+    height: auto;
+}
+
+.footer-sns {
+    list-style: none;
+    display: flex;
+    gap: 2.8vw;
+}
+
+.footer-sns img {
+    width: 2vw;
+    height: auto;
+}
+
+.footer-copyright {
+    position: relative;
+    text-align: center;
+    padding-top: 1.5vw;
+}
+
+.footer-copyright::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background-color: #03A9F4;
+}
+/* ============================= */
+/* SP版 フッター 専用スタイル (768px以下) */
+/* ============================= */
+
+/* ※コメントのpxは画面幅768pxに対してのサイズ */
+@media screen and (max-width: 768px) {
+    /* footer */
+    footer {
+        height: 93.067vw;        /* 349px → 93.067vw */
+        min-height: 93.067vw;
+    }
+
+    .footer-inner {
+        max-width: 100%;
+        padding: 5.467vw 5.467vw 4.8vw 5.467vw; /* 20.5px 20.5px 18px */
+    }
+
+    /* 国旗：フッターの一番上に中央配置 */
+    .footer-flag {
+        text-align: center;
+        margin-bottom: 3.2vw; /* 12px */
+    }
+    .footer-flag img {
+        width: 8.533vw; /* 32px */
+    }
+
+    /* footer-mainをグリッドに変更 */
+    .footer-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            ". nav ."
+            "logo sns .";
+        row-gap: 8.533vw; /* 32px */
+        align-items: center;
+        margin-bottom: 6.4vw; /* 24px */
+    }
+
+    /* ナビ：中央列 */
+    .footer-nav {
+        grid-area: nav;
+        justify-self: center;
+    }
+    .footer-nav ul {
+        align-items: flex-start;
+        gap: 1.333vw; /* 5px */
+    }
+    .footer-nav a {
+        font-size: 3.2vw; /* 12px */
+        text-align: left;
+        width: auto;
+    }
+
+    /* ボーダーをモバイル幅に合わせる */
+    .footer-nav a::after {
+        width: 42.667vw; /* 160px */
+    }
+
+    /* ロゴ：左列 */
+    .footer-logo {
+        grid-area: logo;
+        justify-self: stretch;
+        text-align: left;
+    }
+    .footer-logo img {
+        width: 18.933vw; /* 71px */
+        display: inline-block;
+    }
+
+    /* SNS：中央列 */
+    .footer-sns {
+        grid-area: sns;
+        justify-self: center;
+        gap: 4.267vw; /* 16px */
+    }
+    .footer-sns img {
+        width: 8.533vw; /* 32px */
+    }
+
+    /* コピーライト */
+    .footer-copyright {
+        font-size: 2.667vw; /* 10px */
+        padding-top: 0;
+        position: relative;
+    }
+
+    .footer-copyright::before {
+        content: "";
+        position: absolute;
+        top: -2.667vw; /* 10px */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 0.267vw; /* 1px */
+        background-color: #03A9F4;
+    }
+}
+
+/* ============================= */
+/* スクロールトップボタン */
+/* ============================= */
+.page-top {
+    position: fixed;
+    right: 20px;
+    bottom: 62px;
+    width: 8vw;
+    height: 2.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.page-top img {
+    width: 6vw;
+    height: auto;
+}
+/* スクロールトップボタン(SP版) */
+@media screen and (max-width:768px) {
+  .page-top{
+    right: 10px;
+    width: 12.8vw;
+    height: 12.8vw;
+  }
+  .page-top img {
+    width: 12.8vw; /* 48px */
+  }
+}
+
+
+/* ============================= */
+/* ローディングアニメーション */
+/* ============================= */
+#loading {
+    display: none;
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #007AB7;
+    z-index: 9999;
+    text-align: center;
+}
+
+#loading img {
+    width: 23.28vw;
+    height: auto;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: loadingAnimation 1s ease;
+}
+
+/* アニメーション */
+@keyframes loadingAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 100%; }
+}
+@media screen and (max-width: 768px) {
+    #loading img {
+        width: 76.53vw; /* 287px */
+    }
+}
+

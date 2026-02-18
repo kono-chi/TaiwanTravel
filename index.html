@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>台湾観光 - Taiwan Travel</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="common/reset.css">
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+
+     <body>
+        <!-- ローディング -->
+         <div id="loading"><img src="images/pcLogo.png"></div>
+
+        <!-- ヘッダー -->
+        <header>
+            <nav class="header-nav">
+                <div class="logo"><img src="images/pcLogoH.svg" alt="TAIWAN"></div>
+                <ul class="nav-links">
+                    <li class="menu-title sp-headerOnly">Menu</li>
+                    <li><a href="#">Top</a></li>
+                    <li><a href="taipei/index.html">台北</a></li>
+                    <li><a href="tainan/index.html">台南</a></li>
+                    <li><a href="taichu/index.html">台中</a></li>
+                    <li><a href="#policy">当サイトのポリシー</a></li>
+                    <li><a href="#info">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button id="drawerBtn"></button>
+
+            <!-- ヒーローセクション -->
+            <section id="top" class="hero">
+                <h1>
+                <img src="images/pcLogo.png" alt="台湾観光 Taiwan Travel">
+                </h1>
+
+                <ul class="header-sns">
+                    <li>
+                        <a href="#facebook" rel="noopener">
+                            <img src="images/facebookIcon.svg" alt="Facebook">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#instagram" rel="noopener">
+                            <img src="images/instagramIcon.svg" alt="Instagram">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#x" rel="noopener">
+                            <img src="images/xIcon.svg" alt="X">
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </header>
+
+        <main>
+            <!-- Formosaセクション -->
+            <section id="formosa" class="formosa-section">
+                <!-- 1つ目のコンテンツ（国旗 + Formosa） -->
+                <div class="formosa-item">
+                    <div class="formosa-background">
+                        <img src="images/pcIntroductionbg01.png" alt="背景1" class="bgPC">
+                        <img src="images/spIntroductionbg01.png" alt="背景1" class="bgSP">
+                    </div>
+                    <div class="formosa-overlay">
+                        <div class="formosa-text">
+                            <img src="images/pcFlag.svg" alt="台湾国旗" class="taiwan-flag-svg">
+                            <h2>Formosa</h2>
+                            <p class="subtitle">フォルモサ（麗しの島）</p>
+                        </div>
+                        <div class="formosa-image">
+                            <img src="images/pcIntroduction01.png" alt="台北101">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2つ目のコンテンツ -->
+                <div class="formosa-item">
+                    <div class="formosa-background">
+                        <img src="images/pcIntroductionbg02.png" alt="背景2" class="bgPC">
+                        <img src="images/spIntroductionbg02.png" alt="背景2" class="bgSP">
+                    </div>
+                    <div class="formosa-overlay">
+                        <div class="formosa-text">
+                            <p class="description-text">
+                                フォルモサは、十六世紀にポルトガル人がエメラルド色の美しい台湾を見つけて発した賛嘆の言葉です。緑にあふれた台湾の美しい風景が、あなたを神秘感の世界へといざなってくれるでしょう。
+                            </p>
+                        </div>
+                        <div class="formosa-image">
+                            <img src="images/pcIntroduction02.png" alt="九份の夜景">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ギャラリーセクション -->
+            <section id="gallery" class="gallery-section">
+                <div class="container">
+                    <!-- ============================= -->
+                    <!-- セクションタイトル -->
+                    <!-- 疑似要素で装飾画像を背景として表示 -->
+                    <!-- ============================= -->
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Gallery<span class="title-sub">ギャラリー</span></h2>
+                    </div>
+                    
+                    <!-- ============================= -->
+                    <!-- スライダーコンテナ -->
+                    <!-- 5枚の画像全てを同じサイズで表示 -->
+                    <!-- ============================= -->
+                    <div class="slider-container">
+                        <!-- ============================= -->
+                        <!-- スライダー本体 -->
+                        <!-- 無限ループのため画像を複製配置 -->
+                        <!-- ============================= -->
+                        <div class="gallery-slider" id="gallerySlider">
+                            <div class="slider-track" id="sliderTrack">
+                                <!-- ループ用：最後の2枚を前に複製 -->
+                                <div class="slider-item" data-index="3">
+                                    <img src="images/slide04.png" alt="台湾の風景4">
+                                </div>
+                                <div class="slider-item" data-index="4">
+                                    <img src="images/slide05.png" alt="台湾の風景5">
+                                </div>
+                                
+                                <!-- オリジナル画像5枚 -->
+                                <div class="slider-item" data-index="0">
+                                    <img src="images/slide01.png" alt="台湾の風景1">
+                                </div>
+                                <div class="slider-item" data-index="1">
+                                    <img src="images/slide02.png" alt="台湾の風景2">
+                                </div>
+                                <div class="slider-item" data-index="2">
+                                    <img src="images/slide03.png" alt="台湾の風景3">
+                                </div>
+                                <div class="slider-item" data-index="3">
+                                    <img src="images/slide04.png" alt="台湾の風景4">
+                                </div>
+                                <div class="slider-item" data-index="4">
+                                    <img src="images/slide05.png" alt="台湾の風景5">
+                                </div>
+                                
+                                <!-- ループ用：最初の2枚を後ろに複製 -->
+                                <div class="slider-item" data-index="0">
+                                    <img src="images/slide01.png" alt="台湾の風景1">
+                                </div>
+                                <div class="slider-item" data-index="1">
+                                    <img src="images/slide02.png" alt="台湾の風景2">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ============================= -->
+                        <!-- コントロールエリア -->
+                        <!-- 左矢印 + インジケーター + 右矢印を横並びに配置 -->
+                        <!-- ============================= -->
+                        <div class="slider-controls">
+                            <!-- 左矢印ボタン -->
+                            <button class="slider-arrow slider-arrow-left" aria-label="前のスライド">
+                                <svg width="64" height="64" viewBox="0 0 64 64">
+                                    <circle cx="32" cy="32" r="32" fill="#000000"/>
+                                    <path d="M36 22 L25 32 L36 42" stroke="white" stroke-width="3" fill="none"/>
+                                </svg>
+                            </button>
+                            
+                            <!-- インジケーター（ドット） -->
+                            <div class="slider-indicators" id="sliderIndicators">
+                                <button class="indicator-dot active" data-index="0" aria-label="スライド1へ移動"></button>
+                                <button class="indicator-dot" data-index="1" aria-label="スライド2へ移動"></button>
+                                <button class="indicator-dot" data-index="2" aria-label="スライド3へ移動"></button>
+                                <button class="indicator-dot" data-index="3" aria-label="スライド4へ移動"></button>
+                                <button class="indicator-dot" data-index="4" aria-label="スライド5へ移動"></button>
+                            </div>
+                            
+                            <!-- 右矢印ボタン -->
+                            <button class="slider-arrow slider-arrow-right" aria-label="次のスライド">
+                                <svg width="64" height="64" viewBox="0 0 64 64">
+                                    <circle cx="32" cy="32" r="32" fill="#000000"/>
+                                    <path d="M28 22 L39 32 L28 42" stroke="white" stroke-width="3" fill="none"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- トラベルセクション -->
+            <section class="travel">
+                <h3>Travel<span>おすすめスポット</span></h3>
+                <div class="innerWrap">
+                    <div class="travelDetail">
+                        <p>
+                            訪れた人々を魅了する「美麗島」台湾。そんな台湾の人気スポットを代表する地を３つのエリアでご紹介。様々な風景に誰もが魅了されます。
+                        </p>
+                    </div>
+                    <div class="mapImg">
+                        <img class="map" src="images/map.svg" alt="">
+                        <a href="taipei/index.html"><img id="taipeiLink" src="images/taipeiLink.svg" alt=""></a>
+                        <a href="taichu/index.html"><img id="taichuLink" src="images/taichuLink.svg" alt=""></a>
+                        <a href="tainan/index.html"><img id="tainanLink" src="images/tainanLink.svg" alt=""></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- イベントセクション -->
+            <section class="event">
+                <h3>Event<span>おすすめイベント</span></h3>
+                <div class="eventContent">
+                    <h4>台湾ランタンフェスティバル</h4>
+                    <div class="innerWrap">
+                        <img src="images/eventlanthanum.png" alt="">
+                        <div class="eventDetail">
+                            <p class="day">
+                                <strong>開催期間</strong>
+                                春節　旧暦元日（2024年2月24日～3月2日予定）
+                            </p>
+                            <p class="text">
+                                春節の風習として「天燈」と呼ばれる紙製のランタンに無病息災などの祈りを書き込み、火種を用いて熱気球と同じ原理で空に飛ばす儀式。吉祥や邪気払いの意味があります。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <div class="eventContent">
+                <h4>台北最High新年城<br>カウントダウンパーティー</h4>
+                <div class="innerWrap">
+                    <img src="images/eventCountdown.png" alt="">
+                    <div class="eventDetail">
+                                <p class="day">
+                                    <strong>開催期間</strong>
+                                    12月31日～1月1日
+                                </p>
+                                <p class="text">
+                                    台北101では毎年、新年を祝う花火を実施。元旦0時から約3分間、台北101を覆い尽くすように、ビル全体から美しい火花が舞い散ります。世界中から注目されるイベントの一つです。 
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 基本情報 -->
+            <section>
+                <div class="basicInfo">
+                    <h4>台湾基本情報</h4>
+                    <div class="innerWrap">
+                        <ul>
+                            <li>■正式名称：中華民国・台湾</li>
+                            <li>　Republic of China,Taiwan</li>
+                            <li>■首都：台北</li>
+                            <li>■人口：約2,300万人</li>
+                            <li>■面積：約3万6,000km²</li>
+                            <li>■人種・民族：漢民族、先住民</li>
+                            <li>■宗教：仏教、道教、キリスト教、その他</li>
+                            <li>■言語：北京語、台湾語</li>
+                            <li>■通貨：元（ニュー台湾ドル）</li>
+                            <li>■時差：1時間 台湾が正午のとき、日本は午後1時</li>
+                        </ul>
+                        <ul>
+                            <li>■台湾の気候・服装</li>
+                            <li>■亜熱帯に属し一年を通して温暖な台湾。しかし北回帰線から南は熱帯で暑く、北部は大陸性気候の影響を受けて冷え込むこともあるなど、地域差を頭に入れて服装の準備を</li>
+                            <li>■台湾の祝祭日</li>
+                            <li>■正月：1月1日</li>
+                            <li>■端午節※：6月22日 ■春節※：1月20日～29日</li>
+                            <li>■中秋節※：9月29日 ■和平記念日：2月28日</li>
+                            <li>■国慶節：10月10日 ■清明節：4月5日</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- フッター -->
+        <footer>
+            <div class="footer-inner">
+
+                <!-- 上：国旗 -->
+                <div class="footer-flag">
+                    <img src="images/pcFlag.svg" alt="台湾国旗">
+                </div>
+
+                <!-- 中：3カラム -->
+                <div class="footer-main">
+                    <nav class="footer-nav">
+                        <ul>
+                            <li><a href="#">TOPへもどる</a></li>
+                            <li><a href="taipei/index.html">台北</a></li>
+                            <li><a href="taichu/index.html">台中</a></li>
+                            <li><a href="tainan/index.html">台南</a></li>
+                            <li><a href="#policy">当サイトのポリシー</a></li>
+                            <li><a href="#info">お問い合わせ</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="footer-logo">
+                        <img src="images/pcLogoF.svg" alt="TAIWAN">
+                    </div>
+
+                    <ul class="footer-sns">
+                        <li><a href="#facebook"><img src="images/facebookIcon.svg" alt="Facebook"></a></li>
+                        <li><a href="#instagram"><img src="images/instagramIcon.svg" alt="Instagram"></a></li>
+                        <li><a href="#x"><img src="images/xIcon.svg" alt="X"></a></li>
+                    </ul>
+                </div>
+
+                <!-- 下：コピーライト -->
+                <p class="footer-copyright">
+                    <small>Copyright (C) 2023 TAIWAN.traveler.cc</small>
+                </p>
+
+            </div>
+        </footer>
+
+
+        <!-- スクロールトップボタン -->
+        <div class="page-top-wrap">
+            <a href="#" class="page-top" id="pageTop">
+                <img src="images/backTop.svg" alt="ページトップへ戻る">
+            </a>
+        </div>
+
+        <!-- ============================= -->
+        <!-- スライダー制御用JavaScript -->
+        <!-- 無限ループスライダー実装 -->
+        <!-- ============================= -->
+        <script src="common/jquery-3.4.1.min.js"></script>
+        <script src="scripts/script.js"></script>
+        <script>
+            // ページ読み込み完了後に実行
+            document.addEventListener('DOMContentLoaded', function() {
+                // ============================= 
+                // 要素の取得
+                // ============================= 
+                const slider = document.getElementById('gallerySlider');
+                const track = document.getElementById('sliderTrack');
+                const allItems = document.querySelectorAll('.slider-item');
+                const indicators = document.querySelectorAll('.indicator-dot');
+                const leftArrow = document.querySelector('.slider-arrow-left');
+                const rightArrow = document.querySelector('.slider-arrow-right');
+                
+                // ============================= 
+                // 初期設定
+                // ============================= 
+                const itemWidth = 295;
+                const gap = 80;
+                const totalOriginalSlides = 5; // オリジナル画像の数
+                let currentRealIndex = 2; // 実際の画像インデックス（0-4）
+                let currentPosition = 4; // トラック上の位置（0-8の9枚中、初期位置は4番目 = 3枚目の画像）
+                let isTransitioning = false;
+                
+                // ============================= 
+                // スライダーの位置を更新する関数
+                // ============================= 
+                function updateSlider(animate = true) {
+                    const containerWidth = slider.offsetWidth;
+                    const centerPos = containerWidth / 2;
+
+                    const gap = getGap();
+                    
+                    // 現在の位置までの累積幅を計算
+                    let accumulatedWidth = 0;
+                    for (let i = 0; i < currentPosition; i++) {
+                        accumulatedWidth += itemWidth + gap;
+                    }
+                    accumulatedWidth += itemWidth / 2;
+                    
+                    const offset = centerPos - accumulatedWidth;
+                    
+                    // アニメーション設定
+                    if (animate) {
+                        track.style.transition = 'transform 0.5s ease';
+                    } else {
+                        track.style.transition = 'none';
+                    }
+                    
+                    track.style.transform = `translateX(${offset}px)`;
+                    
+                    // インジケーター更新
+                    indicators.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentRealIndex);
+                    });
+                }
+                //gap幅を変更（画面幅768px以下の場合）
+                function getGap() {
+                    return window.innerWidth <= 768 ? 20 : 80;
+                }
+                
+                // ============================= 
+                // 次のスライドへ移動
+                // ============================= 
+                function nextSlide() {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+                    
+                    currentPosition++;
+                    currentRealIndex = (currentRealIndex + 1) % totalOriginalSlides;
+                    
+                    updateSlider(true);
+                    
+                    // トラックの端に達したら、瞬時にループ位置へ移動
+                    setTimeout(() => {
+                        if (currentPosition >= 7) { // 7番目（8枚目）まで行ったら
+                            currentPosition = 2; // 2番目（3枚目）へ瞬時に戻る
+                            updateSlider(false);
+                        }
+                        isTransitioning = false;
+                    }, 500);
+                }
+                
+                // ============================= 
+                // 前のスライドへ移動
+                // ============================= 
+                function prevSlide() {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+                    
+                    currentPosition--;
+                    currentRealIndex = (currentRealIndex - 1 + totalOriginalSlides) % totalOriginalSlides;
+                    
+                    updateSlider(true);
+                    
+                    // トラックの端に達したら、瞬時にループ位置へ移動
+                    setTimeout(() => {
+                        if (currentPosition <= 1) { // 1番目（2枚目）まで戻ったら
+                            currentPosition = 6; // 6番目（7枚目）へ瞬時に移動
+                            updateSlider(false);
+                        }
+                        isTransitioning = false;
+                    }, 500);
+                }
+                
+                // ============================= 
+                // 矢印ボタンのクリックイベント
+                // ============================= 
+                leftArrow.addEventListener('click', prevSlide);
+                rightArrow.addEventListener('click', nextSlide);
+                
+                // ============================= 
+                // インジケーター（ドット）のクリックイベント
+                // ============================= 
+                indicators.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        if (isTransitioning) return;
+                        
+                        // クリックされたインデックスへ移動
+                        const targetRealIndex = index;
+                        const diff = targetRealIndex - currentRealIndex;
+                        
+                        currentRealIndex = targetRealIndex;
+                        currentPosition += diff;
+                        
+                        // ループ範囲を超えた場合の調整
+                        if (currentPosition < 2) {
+                            currentPosition = 2 + (currentPosition - 2 + totalOriginalSlides) % totalOriginalSlides;
+                        } else if (currentPosition > 6) {
+                            currentPosition = 2 + (currentPosition - 2) % totalOriginalSlides;
+                        }
+                        
+                        updateSlider(true);
+                    });
+                });
+                
+                // ============================= 
+                // ドラッグ機能の変数
+                // ============================= 
+                let isDragging = false;
+                let startPos = 0;
+                
+                // ============================= 
+                // ドラッグイベントリスナー
+                // ============================= 
+                slider.addEventListener('mousedown', dragStart);
+                slider.addEventListener('touchstart', dragStart);
+                slider.addEventListener('mouseup', dragEnd);
+                slider.addEventListener('touchend', dragEnd);
+                slider.addEventListener('mousemove', drag);
+                slider.addEventListener('touchmove', drag);
+                slider.addEventListener('mouseleave', dragEnd);
+                
+                function dragStart(e) {
+                    isDragging = true;
+                    startPos = getPositionX(e);
+                    slider.style.cursor = 'grabbing';
+                }
+                
+                function drag(e) {
+                    if (!isDragging) return;
+                    const currentPosition = getPositionX(e);
+                    const diff = currentPosition - startPos;
+                    
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            prevSlide();
+                        } else {
+                            nextSlide();
+                        }
+                        isDragging = false;
+                        slider.style.cursor = 'grab';
+                    }
+                }
+                
+                function dragEnd() {
+                    isDragging = false;
+                    slider.style.cursor = 'grab';
+                }
+                
+                function getPositionX(e) {
+                    return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+                }
+                
+                // ============================= 
+                // 初期表示
+                // ============================= 
+                updateSlider(false);
+                
+                // ============================= 
+                // ウィンドウリサイズ時に再計算
+                // ============================= 
+                window.addEventListener('resize', () => updateSlider(false));
+            });
+        </script>
+    </body>
+</html>

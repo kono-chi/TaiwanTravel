@@ -1,0 +1,1792 @@
+/* ============================= */
+/* 基本設定 */
+/* ============================= */
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 0.88vw;
+    color: #000;
+    line-height: 1.8;
+    background-color: #F4F4F4;
+}
+
+/* ============================= */
+/* Header */
+/* ============================= */
+header {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.logo img {
+    width: 9.8vw;
+    height: auto;
+}
+
+.glovalNav {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 90vw;
+    padding: 1.5vw 2.4vw 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
+    margin-top: 0;
+    /* 中の文字サイズが消えないよう、ここで改めて指定 */
+    font-size: 1.72vw;
+}
+
+header .spHeaderOnly {
+    display: none; /* PC版では完全に隠す */
+}
+
+#drawerBtn {
+    display: none;
+}
+
+.navList {
+    display: flex;
+    gap: 1.6vw;
+    list-style: none;
+    align-self: flex-end;
+}
+
+.navList a {
+    font-size: 1.72vw;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navList a:hover {
+    color: #0066cc;
+}
+
+/* ============================= */
+/* SP版 Header / ドロワーメニュー 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    /* Header領域にロゴを追加 */
+    header::before {
+        content: ""; /* 空にして背景画像で制御 */
+        display: block;
+        position: absolute;
+        /* 8px 相当 */
+        top: 2.1vw;
+        /* 12px 相当 */
+        left: 3.2vw;
+        z-index: 1001;
+        
+        /* 111px 相当の相対値 */
+        width: 29.6vw;
+        max-width: 29.6vw;
+        /* アスペクト比を維持するための高さ設定（画像の比率に合わせて調整してください） */
+        height: 10vw; 
+
+        background-image: url("../images/spLogoH.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left center;
+    }
+
+    /* ドロワーボタン自体の設定 */
+    #drawerBtn {
+        display: block;
+        /* 48px 相当の相対値 */
+        width: 12.8vw;
+        height: 12.8vw;
+        position: fixed;
+        top: 2.1vw;
+        right: 2.1vw;
+        z-index: 1001;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .sp-only.menuTitle {
+        display: block;
+        color: #fff;
+        /* 24px 相当の相対値 */
+        font-size: 6.4vw;
+        font-weight: bold;
+        /* 30px 相当の相対値 */
+        margin-bottom: 8vw;
+        list-style: none;
+        border-bottom: none;
+    }
+
+    /* ドロワーメニュー本体の設定 */
+    header .glovalNav {
+        position: fixed;
+        top: 0;
+        /* 追加: 下端を画面の底に固定する */
+        bottom: 0; 
+        
+        right: -66.6vw;
+        left: auto;
+        transform: none;
+
+        width: 60vw; 
+
+        background-color: #000000b3;
+        z-index: 1000;
+        transition: right 0.3s ease;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 0 3.2vw 0 3.2vw;
+
+        /* 追加: メニューが長い場合に内部でスクロールできるようにする */
+        overflow-y: auto; 
+        /* iOSなどでのスクロールを滑らかにする設定 */
+        -webkit-overflow-scrolling: touch; 
+    }
+
+    header .glovalNav .logo {
+        /* 10px 相当の相対値 */
+        margin: 0 0 2.7vw 0;
+        padding: 0;
+    }
+
+    header .glovalNav .logo img {
+        /* 111px 相当の相対値 */
+        width: 29.6vw;
+        max-width: 29.6vw;
+        height: auto;
+        /* 10px 相当の相対値 */
+        margin: 2.7vw;
+        display: block;
+    }
+
+    /* メニュータイトル */
+    header .glovalNav .navList li.menuTitle.spHeaderOnly {
+        display: block;
+        color: #fff;
+        /* 24px 相当の相対値 */
+        font-size: 6.4vw;
+        font-weight: bold;
+        list-style: none;
+        /* 10px 相当の相対値 */
+        margin-bottom: 2.7vw;
+    }
+
+    header .glovalNav .navList {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        /* 60px 相当の上下パディング */
+        padding: 16vw 0 16vw 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* メニューが開いた時 */
+    header.active .glovalNav {
+        right: 0;
+    }
+
+    /* 三本線と×印のアイコン表示 */
+    header::after {
+        content: "";
+        display: block;
+        /* 48px 相当の相対値 */
+        width: 12.8vw;
+        height: 12.8vw;
+        background: url(../images/drawerOpen.svg) no-repeat center / contain;
+        position: fixed;
+        top: 2.1vw;
+        right: 2.1vw;
+        z-index: 1000;
+        pointer-events: none;
+    }
+    header.active::after {
+        background: url(../images/drawerClose.svg) no-repeat center / contain;
+        position: fixed;
+    }
+
+    /* 各項目の余白調整 */
+    header .glovalNav .navList li.menuTitle.spHeaderOnly {
+        /* 30px 相当の相対値 */
+        margin-bottom: 8vw;
+    }
+
+    header .glovalNav .navList li {
+        /* 8px 相当の相対値 */
+        margin-bottom: 2.1vw;
+    }
+
+    header .glovalNav .navList li:nth-child(3),
+    header .glovalNav .navList li:nth-child(6),
+    header .glovalNav .navList li:last-child {
+        /* 20px 相当の相対値 */
+        margin-top: 5.3vw;
+    }
+
+    /* リンク自体の装飾 */
+    header .glovalNav .navList li a {
+        /* 20px 相当の相対値 */
+        font-size: 5.3vw;
+        width: auto;
+        /* 0.1px相当は極細線として相対化 */
+        border-bottom: 0.03vw solid #fff;
+        padding-bottom: 0;
+    }
+}
+
+/* ============================= */
+/* Heroセクション */
+/* ============================= */
+
+.hero {
+    width: 100vw;
+    aspect-ratio: 2732 / 1536;
+    position: relative;
+
+    background-image: url("../images/pcTainanTop.png");
+    background-size: cover;    /* 引いて見せる */
+    background-repeat: no-repeat;
+    background-position: center top;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+}
+
+.hero h1 {
+    transform: translate(-12.5vw, -1.5vw);
+}
+
+.hero h1 img {
+    width: 22vw;
+    height: auto;
+    display: block;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.headerSns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vw;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.headerSns img {
+    width: clamp(2.4vw, 2.4vw, 2.4vw);
+    height: auto;
+    display: block;
+}
+
+.hero .headerSns {
+    position: absolute;
+    left: 7%;
+    top: 78%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    z-index: 10;
+}
+
+.headerSns a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1vw, 0.6vw, 1.2vw);
+}
+
+.heroText {
+    position: absolute;
+    right: 4vw;
+    bottom: 4vw;
+
+    max-width: 29vw;    /* テキストの横幅制御 */
+    color: #ffffff;
+    font-size: 1.25vw;
+    line-height: 1.8;
+
+    z-index: 5;    /* 他要素より前に出す */
+}
+
+/* ============================= */
+/* SP版 Heroセクション 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    /* --- Header --- */
+    header {
+        width: 100vw;
+    }
+
+    .glovalNav {
+        display: none;
+    }
+
+    /* --- Hero --- */
+    .hero {
+        width: 100vw;
+        height: auto;
+        aspect-ratio: 9 / 16;
+        position: relative;
+        background-image: url("../images/spTainanTop.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        transform: translateY(-6.4vw);
+        z-index: 5;
+    }
+
+    .hero h1 img {
+        width: 53.1vw;
+        max-width: 53.1vw;
+        height: auto;
+        display: block;
+    }
+
+    .hero-content {
+        text-align: center;
+        z-index: 1;
+    }
+
+    /* --- SNS --- */
+    .headerSns {
+        display: flex;
+        flex-direction: column;
+        gap: 2.7vw;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .headerSns img {
+        width: 8.5vw;
+        max-width: 8.5vw;
+        height: auto;
+        display: block;
+    }
+
+    .hero .headerSns {
+        position: absolute;
+        left: 5.3vw;
+        top: 122vw;
+        transform: none;
+        flex-direction: column;
+        z-index: 10;
+    }
+
+    .headerSns a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1vw;
+    }
+
+    /* --- Text --- */
+    .heroText {
+        position: absolute;
+        right: 4vw;
+        bottom: 4vw;
+        width: 65.9vw;
+        max-width: 65.9vw;
+        color: #ffffff;
+        font-size: 3.2vw;
+        line-height: 1.8;
+        text-align: left;
+        z-index: 5;
+    }
+}
+
+/* ============================= */
+/* パンくずリスト */
+/* ============================= */
+
+.breadcrumb {
+    /* 1. HTMLに直接書かれた ">" を消すために文字サイズを0にする */
+    font-size: 0; 
+    /* 配置の調整 */
+    max-width: 87.8vw;
+    margin: 0 auto;
+    padding: 0.7vw 1vw 0.8vw;
+    position: relative;
+}
+
+/* 2. リンクと各項目の文字サイズを個別に指定して復活 */
+.breadcrumb a, 
+.breadcrumb span {
+    font-size: 1.5vw; /* 元のサイズを指定 */
+    color: #666;
+    display: inline-block;
+}
+.breadcrumb a {
+    color: #000;
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* 3. 各項目の前に CSSで大きな ">" を表示させる */
+.breadcrumb span::before {
+    content: ">";       /* 表示する文字 */
+    display: inline-block;
+    margin: 0 0.4vw;    /* 左右の余白 */
+    font-size: 2vw;   /* リンク(1.5vw)より大きく設定 */
+    color: #000;        /* 色の調整 */
+
+    vertical-align: middle;       /* 文字列との垂直方向の中央合わせ */
+    line-height: 1;               /* 記号自身の持つ上下の余白を最小化 */
+
+    transform: translateY(-0.5vw); 
+}
+
+/* 下線の装飾（元のデザインを維持） */
+.breadcrumb::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0vw;
+    width: 100vw;
+    height: 0.08vw;
+    background-color: #000;
+    transform: translateX(-50%);
+}
+
+/* ============================= */
+/* SP版 パンくずリスト 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    .breadcrumb {
+        padding: 0.5vw 0; /* 上下のパディング */
+        margin: 0 5.3vw;  /* 左右に余白（左詰め） */
+        max-width: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative; /* 下線の基準にする */
+        overflow: visible;  /* 線がはみ出てもレイアウトを壊さないようにする */
+    }
+
+    /* 下線の修正：ヒーローセクションをズラさない設定 */
+    .breadcrumb::after {
+        content: "";
+        position: absolute;
+        left: -5.3vw;     /* marginで空けた分を左に戻して画面端に合わせる */
+        bottom: 0;
+        width: 100vw;    /* 画面いっぱいの線 */
+        height: 0.26vw;
+        background-color: #000;
+        transform: none;  /* 中央寄せの命令を解除 */
+        pointer-events: none; /* 線がクリックを邪魔しないようにする */
+    }
+
+    /* 以下、文字の表示設定（前回と同じ） */
+    .breadcrumb a, 
+    .breadcrumb span {
+        font-size: 4.2vw;
+    }
+
+    .breadcrumb span::before {
+        font-size: 4.3vw;
+        transform: translateY(-1vw); 
+    }
+
+    .breadcrumb > a:first-child {
+        font-size: 0;
+        position: relative;
+    }
+
+    .breadcrumb > a:first-child::after { 
+        content: "Top";
+        font-size: 4.2vw;
+        position: static;
+    }
+}
+
+/* ============================= */
+/* セクション共通 */
+/* ============================= */
+.sec01, .gourmet, .sec03, .event, .basicInfo {
+    max-width: 87.8vw; /* 1200px相当 */
+    margin: 0 auto;
+
+    background-color: #F4F4F4;
+}
+
+/* セクションタイトル共通スタイル（sec01基準） */
+h3 {
+    font-size: 1.76vw; /* SP */
+    margin: 0 1.46vw 1.46vw;
+    position: relative;
+    width: 100%;
+    max-width: 38.8vw; /* 530px相当 */
+    text-align: center;
+    padding: 2.49vw 0 1.76vw;
+}
+
+.sectionTitle {
+    font-size: 3.51vw; /* SP */
+    font-weight: normal;
+    text-align: center;
+    margin: 0 1.46vw 1.46vw;    /* 右揃えのためmargin-left:auto、下は80px相当 */
+    width: 100%;
+    max-width: 38.8vw; /* 530px相当 */
+    height: auto;
+    position: relative;
+    display: block;
+    padding: 2.49vw 0 1.76vw;
+    z-index: 2;
+}
+
+h3::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url(../images/SecDec.png) no-repeat center/cover;
+    width: 38.8vw; /* 530px相当 */
+    height: 7.03vw;   /* 96px相当 */
+    top: 1.46vw;
+}
+
+.titleSub {
+    font-size: 1.76vw; /* SP */
+    padding-left: 0.73vw; /* sec01に統一 */
+}
+
+h3 span {
+    font-size: 12px; /* SP */
+    padding-left: 0.73vw;
+}
+
+.innerWrap {
+    display: flex;
+    margin-bottom: 5.8vw; /* 80px相当 */
+    justify-content: space-between;
+}
+
+/* セクション区切り線（410px = 30.01vw at 1366px） */
+.section-divider {
+    border: none;
+    border-top: 1px solid #000;
+    width: 30.01vw; /* 410px相当 */
+    margin: 4vw auto 4vw; /* 60px 80px相当 */
+    display: block;
+}
+
+/* ============================= */
+/* sec01 Attractionセクション */
+/* ============================= */
+
+.sec01 {
+    /* 1200px相当：最大幅を制限しつつ、それ以下では可変に */
+    max-width: 87.8vw;
+    margin: 0 auto;
+
+    background-color: #F4F4F4;
+}
+
+/* スポットごとの親コンテナ */
+.attraction-unit {
+    display: grid;
+    grid-template-columns: 43.9vw 36.6vw;    /* 左 43.9vw(600px) / 右 36.6vw(500px) */
+    grid-template-rows: 2vw auto auto;
+    column-gap: 4.4vw;    /* 間 4.4vw(60px) */
+    row-gap: 2.9vw;    /* 40px相当 */
+    margin-bottom: 5.8vw;    /* 80px相当 */
+    justify-content: center;
+}
+
+/* ラッパー要素を透明化 */
+.attraction-visual,
+.attraction-info {
+    display: contents;
+}
+
+/* 各パーツの配置指定 */
+.spotTitle {
+    grid-column: 1 / 3;
+    font-size: 2.6vw; /* 36px相当 */
+    font-weight: bold;
+    letter-spacing: 0.5em;
+
+    text-align: left;
+}
+
+.main-img {
+    grid-column: 1;
+    grid-row: 2;
+    display: block;    /* 画像の設定 */
+}
+.sub-imgs {
+    grid-column: 1;
+    grid-row: 3;
+}
+.description {
+    grid-column: 2;
+    grid-row: 2;
+}
+.note {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+/* --- 特定の区画のメイン画像だけ高さを強制調整 --- */
+.adjust-main-img .main-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;    /* 重要：これを入れないと画像が縦に伸びる */
+    object-position: center;    /* 画像のどこを中心に切り抜くか（真ん中ならcenter） */
+}
+
+.sub-imgs {
+    display: flex;
+    gap: 1.5vw; /* 20px相当 */
+    width: 43.9vw; /* 600px相当 */
+}
+
+.sub-imgs img {
+    /* (43.9vw - 1.5vw) / 2 = 21.2vw */
+    width: 21.2vw; 
+    height: auto;
+}
+
+/* 右側のテキストボックス */
+.info-box {
+    width: 36.6vw; /* 500px相当 */
+    background-color: #64C99B33;
+    padding: 3.1vw; /* 40px相当 */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    letter-spacing: 0.01vw;
+}
+
+.info-box p {
+    font-size: 1.4vw; /* 20px相当（少し小さめが綺麗かも） */
+    line-height: 1.6;
+}
+
+/* 特定の箱（center-box）の中央寄せ */
+.info-box.center-box {
+    align-items: center;
+    text-align: center;
+}
+
+/* 営業時間（strong）の調整 */
+.info-box strong {
+    display: block;
+    text-align: center;
+    margin-top: 1.1vw; /* 15px相当 */
+    font-weight: bold;
+}
+
+/* ============================= */
+/* SP版 sec01 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    /* --- セクションタイトル --- */
+    .sec01 .sectionTitle {
+        max-width: 100%;
+        /* 24px 相当 */
+        font-size: 6.4vw;
+        /* 22.5px 相当 */
+        margin: 6vw auto;
+    }
+
+    .sec01 h3::before {
+        content: "";
+        display: block;
+        position: absolute;
+        background: url(../images/SecDec.png) no-repeat center/cover;
+
+        /* 220px / 40px 相当 */
+        width: 58.6vw;
+        max-width: 58.6vw;
+        height: 10.6vw;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+
+    .sec01 .titleSub {
+        /* 12px 相当 */
+        font-size: 3.2vw;
+    }
+
+    /* --- セクション区切り線 --- */
+    .sec01 .section-divider {
+        border: none;
+        border-top: 0.26vw solid #000;
+        /* 223px 相当 */
+        width: 59.4vw;
+        max-width: 59.4vw;
+        /* 30px 相当 */
+        margin: 8vw auto 8vw;
+        display: block;
+    }
+
+    .sec01 .attraction-visual,
+    .sec01 .attraction-info {
+        display: contents;
+    }
+
+    /* --- 観光スポット ユニット --- */
+    .sec01 .attraction-unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* 20px 相当 */
+        row-gap: 5.3vw;
+        /* 60px 相当 */
+        margin-bottom: 16vw;
+    }
+
+    /* --- 各パーツの横幅とサイズ --- */
+    .sec01 .spotTitle {
+        order: 1;
+        /* 295px 相当 */
+        width: 78.6vw;
+        max-width: 78.6vw;
+        /* 24px 相当 */
+        font-size: 6.4vw;
+        text-align: center;
+        letter-spacing: 0.3em;
+    }
+
+    .sec01 .main-img {
+        order: 2;
+        /* 295px / 221px 相当 */
+        width: 78.6vw;
+        max-width: 78.6vw;
+        height: 58.9vw;
+        overflow: hidden;
+    }
+
+    .sec01 .description { 
+        order: 3;
+        width: 78.6vw;
+        max-width: 78.6vw;
+    }
+
+    .sec01 .sub-imgs {
+        order: 4;
+        width: 78.6vw;
+        max-width: 78.6vw;
+        display: flex; 
+        /* 20px 相当 */
+        gap: 5.3vw;
+    }
+
+    .sec01 .note {
+        order: 5;
+        width: 78.6vw;
+        max-width: 78.6vw;
+    }
+
+    /* サブ画像サイズ */
+    .sec01 .attraction-unit .sub-imgs img {
+        /* 137.5px / 150px 相当 */
+        width: 36.7vw;
+        height: 40vw;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* --- 緑のボックス (info-box) --- */
+    .sec01 .info-box {
+        width: 78.6vw;
+        max-width: 78.6vw;
+        background-color: #64C99B33;
+        /* 8px 相当 */
+        padding: 2.1vw 0;
+        box-sizing: border-box;
+    }
+
+    .sec01 .attraction-unit .note { 
+        /* 5px 相当 */
+        padding: 1.3vw;
+    }
+
+    .sec01 .info-box p {
+        /* 12px 相当 */
+        font-size: 3.2vw;
+        line-height: 1.8;
+        margin: 0 auto;
+        text-align: justify;
+    }
+
+    /* 各テキストの有効幅指定 */
+    .sec01 .description p { 
+        /* 223px 相当 */
+        width: 59.4vw; 
+    }
+    .sec01 .attraction-unit:nth-of-type(1) .note p { 
+        /* 231px 相当 */
+        width: 61.6vw; 
+    }
+    .sec01 .attraction-unit:nth-of-type(2) .note p { 
+        /* 229px 相当 */
+        width: 61vw; 
+    }
+
+    /* 元のPC用画像を隠す */
+    .sec01 .main-img img,
+    .sec01 .sub-imgs img {
+        display: none;
+    }
+
+    /* メイン画像の枠にSP用画像を背景として表示 */
+    .sec01 .main-img.anpingOldStreet {
+        background-image: url("../images/spSec010101.png");
+        background-size: cover;
+        background-position: center;
+        width: 78.6vw;
+        height: 58.9vw;
+    }
+
+    .sec01 .main-img.chihkanTower {
+        background-image: url("../images/spSec010201.png");
+        background-size: cover;
+        background-position: center;
+        width: 78.6vw;
+        height: 58.9vw;
+    }
+
+    /* サブ画像（擬似要素を使って2枚並べる例） */
+    /* ※より細かく調整する場合は背景画像が確実です */
+    .sec01 .sub-imgs img[src*="pcSec010102.png"] { content: url("../images/spSec010102.png"); display: block; }
+    .sec01 .sub-imgs img[src*="pcSec010103.png"] { content: url("../images/spSec010103.png"); display: block; }
+    .sec01 .sub-imgs img[src*="pcSec010202.png"] { content: url("../images/spSec010202.png"); display: block; }
+    .sec01 .sub-imgs img[src*="pcSec010203.png"] { content: url("../images/spSec010203.png"); display: block; }
+    
+    /* contentプロパティで差し替える場合は、必ず display: block を明示します */
+}
+
+/* ============================= */
+/* sec02 Gourmetセクション */
+/* ============================= */
+.sec02 {
+    max-width: 87.8vw; /* sec01に統一 */
+    margin: 0 auto;
+    padding-bottom: 5.8vw; /* sec01に統一 */
+    background-color: #F4F4F4;
+    position: relative;
+}
+
+/* Gourmetヘッダー（タイトルと装飾）- 右揃え */
+.sec02 .sectionTitle {
+    font-size: 3.51vw; /* SP */
+    font-weight: normal;
+    text-align: center;
+    margin: 0 1.46vw 5.8vw auto;    /* 右揃えのためmargin-left:auto、下は80px相当 */
+    width: 100%;
+    max-width: 38.8vw; /* 530px相当 */
+    height: auto;
+    position: relative;
+    display: block;
+    padding: 2.49vw 0 1.76vw;
+    z-index: 2;
+}
+
+/* sec01と同じ装飾 */
+.sec02 .sectionTitle::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url(../images/SecDec.png) no-repeat center/cover;
+    width: 38.8vw; /* 530px相当 */
+    height: 7.03vw; /* 96px相当 */
+    top: 1.46vw;
+    z-index: -1;
+}
+
+.sec02 .titleSub {
+    font-size: 1.76vw; /* SP */
+}
+
+/* Gourmet説明文 - innerWrap領域内に配置（1366px基準） */
+.gourmet-description {
+    width: 30.75vw; /* 420px ÷ 1366px = 30.75% */
+    height: auto;
+    min-height: 15.81vw;    /* 216px ÷ 1366px = 15.81% */
+    margin-left: 4.39vw;    /* 60px ÷ 1366px = 4.39% - innerWrap領域内 */
+    margin-bottom: 4.39vw;    /* 60px ÷ 1366px = 4.39% */
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    font-size: 1.46vw; /* SP */
+    line-height: 1.8;
+    text-align: justify;
+    padding: 1.46vw 0; /* 20px ÷ 1366px = 1.46% */
+}
+
+/* Gourmetグリッド - 1366px基準で中央配置 */
+.gourmet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 37.33vw);    /* 510px ÷ 1366px = 37.33% */
+    grid-template-rows: repeat(2, 36.01vw);    /* 492px ÷ 1366px = 36.01% */
+    gap: 2.93vw 4.39vw;    /* 40px, 60px ÷ 1366px */
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;    /* グリッド全体を中央配置 */
+}
+
+/* Gourmetアイテム */
+.gourmet-item {
+    width: 37.33vw; /* 510px相当 */
+    height: 36.01vw; /* 492px相当 */
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1.17vw; /* 16px相当 */
+}
+
+.gourmet-item h4 {
+    font-size: 2.64vw; /* SP */
+    margin-bottom: 1.46vw; /* 20px相当 */
+    font-weight: normal;
+    text-align: center;
+}
+
+.gourmet-item h4 span {
+    font-size: 1.46vw; /* SP */
+}
+
+.gourmet-item img {
+    width: 37.33vw; /* 510px相当 */
+    height: 16.1vw; /* 220px相当 */
+    object-fit: cover;
+    margin-bottom: 1.17vw; /* 16px相当 */
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.gourmet-item img:hover {
+    opacity: 0.8;
+}
+
+.gourmet-item p {
+    font-size: 1.46vw; /* SP */
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 0.88vw; /* 12px相当 */
+    flex-grow: 1;
+}
+
+.gourmet-link {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    font-size: 1.46vw;
+    padding-bottom: 0px;
+    align-self: flex-start;
+    cursor: pointer;
+}
+
+.gourmet-link:hover {
+    opacity: 0.7;
+}
+
+/* ============================= */
+/* SP版 sec02 専用スタイル (768px以下) */
+/* ============================= */
+@media screen and (max-width: 768px) {
+    /* sec02全体 */
+    .sec02 {
+        max-width: 100%;
+        /* 30px 20px 40px 20px 相当 */
+        padding: 8vw 5.3vw 10.6vw 5.3vw;
+    }
+
+    /* ② セクションタイトル */
+    .sec02 .sectionTitle {
+        /* 220px / 40px 相当 */
+        width: 58.6vw;
+        max-width: 58.6vw;
+        height: 10.6vw;
+        /* 24px 相当 */
+        font-size: 6.4vw;
+        /* 40px 相当 */
+        margin: 0 auto 10.6vw auto;
+        /* 8px 相当 */
+        padding: 2.1vw 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* タイトル装飾 */
+    .sec02 .sectionTitle::before {
+        width: 58.6vw;
+        max-width: 58.6vw;
+        height: 10.6vw;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .sec02 .titleSub {
+        /* 12px 相当 */
+        font-size: 3.2vw;
+        /* 3px 相当 */
+        padding-left: 0.8vw;
+        /* 12px 相当 */
+        padding-top: 3.2vw;
+    }
+
+    /* セクション説明文 */
+    .sec02 .gourmet-description {
+        /* 223px / 81.6px 相当 */
+        width: 59.4vw;
+        max-width: 59.4vw;
+        height: auto;
+        min-height: 21.7vw;
+        /* 30px 相当 */
+        margin: 0 auto 8vw auto;
+        /* 12px 相当 */
+        font-size: 3.2vw;
+        line-height: 1.6;
+        text-align: center;
+        padding: 0;
+    }
+
+    /* ③ グリッド配置 */
+    .sec02 .gourmet-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* 30px 相当 */
+        gap: 8vw;
+        width: 100%;
+        /* 375px 相当 */
+        max-width: 100vw;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    /* 各グリッドアイテム */
+    .sec02 .gourmet-item {
+        /* 233px 相当 */
+        width: 62.1vw;
+        max-width: 62.1vw;
+        height: auto;
+        /* 318.8px 相当 */
+        min-height: 85vw;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* グリッド内画像 */
+    .sec02 .gourmet-item img {
+        /* 335px 相当 */
+        width: 89.3vw;
+        max-width: 89.3vw;
+        height: auto;
+        /* 8px 相当 */
+        margin-bottom: 2.1vw;
+        object-fit: cover;
+    }
+
+    /* グリッド内タイトル */
+    .sec02 .gourmet-item h4 {
+        /* 223px 相当 */
+        width: 59.4vw;
+        max-width: 59.4vw;
+        height: auto;
+        /* 32px 相当 */
+        font-size: 8.5vw;
+        /* 8px 相当 */
+        margin: 0 auto 2.1vw auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        /* 8px 相当 */
+        gap: 2.1vw;
+        line-height: 1;
+    }
+
+    .sec02 .gourmet-item h4 span {
+        /* 16px 相当 */
+        font-size: 4.2vw;
+        display: block;
+        text-align: center;
+        line-height: 1;
+    }
+
+    /* グリッド内説明文 */
+    .sec02 .gourmet-item p {
+        /* 223px / 76.8px 相当 */
+        width: 59.4vw;
+        max-width: 59.4vw;
+        height: 20.4vw;
+        /* 12px 相当 */
+        font-size: 3.2vw;
+        line-height: 1.6;
+        /* 12px 4px 相当 */
+        margin: 3.2vw auto 1vw auto;
+        text-align: justify;
+        overflow: hidden;
+    }
+
+    /* 「画像を見る」リンク */
+    .sec02 .gourmet-link {
+        /* 223px 相当 */
+        width: 59.4vw;
+        max-width: 59.4vw;
+        /* 12px 相当 */
+        font-size: 3.2vw;
+        margin: 0 auto;
+        /* 20px 相当 */
+        margin-bottom: 5.3vw;
+        text-align: right;
+        display: block;
+    }
+
+    /* セクション区切り線 */
+    .sec02 .section-divider {
+        /* 223px 相当 */
+        width: 59.4vw !important;
+        max-width: 59.4vw !important;
+        /* 15px 相当 */
+        margin: 4vw auto 4vw;
+    }
+
+    /* SP版画像差し替え */
+    .sec02 .gourmet-item img[src*="pcSec020101.png"] { content: url("../images/spSec020101.png"); }
+    .sec02 .gourmet-item img[src*="pcSec020102.png"] { content: url("../images/spSec020102.png"); }
+    .sec02 .gourmet-item img[src*="pcSec020103.png"] { content: url("../images/spSec020103.png"); }
+    .sec02 .gourmet-item img[src*="pcSec020104.png"] { content: url("../images/spSec020104.png"); }
+}
+
+/* ============================= */
+/* モーダル */
+/* ============================= */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    position: relative;
+    width: 49.41vw; /* 675px相当 */
+    height: 49.41vw; /* 675px相当 */
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.46vw; /* 20px相当 */
+    right: 1.46vw; /* 20px相当 */
+    width: 2.64vw; /* 36px相当 */
+    height: 2.64vw; /* 36px相当 */
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.modal-close:hover {
+    opacity: 0.7;
+}
+
+.modal-image {
+    width: 40.63vw; /* 555px相当 */
+    height: 40.63vw; /* 555px相当 */
+    object-fit: cover;
+}
+
+/* ============================= */
+/* モーダル メディアクエリ（SP版：768px以下） */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    /* モーダルのSP・タブレット版サイズ調整 */
+    .modal-content {
+        /* 375px 相当の相対値 */
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vw;
+    }
+
+    .modal-close {
+        /* 28px 相当の相対値 */
+        width: 7.5vw;
+        max-width: 7.5vw;
+        height: 7.5vw;
+        /* 20px 相当の相対値 */
+        top: 5.3vw;
+        right: 5.3vw;
+    }
+
+    .modal-image {
+        /* 283px 相当の相対値 */
+        width: 75.5vw;
+        max-width: 75.5vw;
+        height: 75.5vw;
+    }
+}
+
+/* ============================= */
+/* sec03 Pickupセクション */
+/* ============================= */
+
+/* 共通 - sec01に統一 */
+.sec03 {
+    max-width: 87.8vw; /* sec01に統一 */
+    margin: 0 auto;
+    background-color: #F4F4F4;
+    line-height: 1.6;
+    padding-bottom: 5.8vw; /* sec01に統一 */
+}
+.sec03 .sectionTitle {
+    margin: 0 1.46vw 5.8vw;
+}
+
+.sec03 h3::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url(../images/SecDec.png) no-repeat center/cover;
+    width: 38.8vw; /* 530px相当 */
+    height: 7.03vw; /* 96px相当 */
+    top: 1.76vw; /* 24px相当 */
+}
+
+/* セクション区切り線 - sec01に統一 */
+.sec03::after {
+    content: "";
+    display: block;
+    width: 30.01vw; /* 410px ÷ 1366px = 30.01% */
+    height: 1px;
+    background: #000;
+    margin: 4.39vw auto 0; /* 60px ÷ 1366px = 4.39% */
+}
+
+.sec03 .innerWrap {
+    padding: 0 4.39vw; /* 60px ÷ 1366px = 4.39% */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5.86vw; /* 80px ÷ 1366px = 5.86% */
+}
+
+.sec03 h4 {
+    width: 30.75vw; /* 420px ÷ 1366px = 30.75% */
+    font-size: 2.64vw; /* SP */
+    padding-bottom: 1.46vw; /* 20px ÷ 1366px = 1.46% */
+    margin-left: 4.2vw;
+    text-align: center;
+}
+
+.intro {
+    width: 30.75vw; /* 420px ÷ 1366px = 30.75% */
+    padding: 1.46vw 0 4.39vw; /* 20px, 60px ÷ 1366px */
+    margin-left: 4.2vw;
+    border-top: 1px solid #000;
+    font-size: 1.46vw;
+}
+
+.sec03 img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.sec03 p {
+    font-size: 1.46vw;
+}
+
+/* 個別レイアウト */
+.image01, .image04 {
+    max-width: 55.5%;
+}
+.note01, .image05 {
+    max-width: 39%;
+    text-align: justify;
+}
+.note01 {
+    align-self: center;
+}
+.image02, .image03 {
+    max-width: 47.2%;
+}
+.note02 {
+    text-align: center;
+    margin-bottom: 5.86vw; /* 80px ÷ 1366px = 5.86% */
+}
+.image05 p {
+    margin-bottom: 1.5vw; /* 20px相当 */
+}
+
+/* ============================= */
+/* SP版 sec03 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    /* section全体 */
+    .sec03 {
+        /* 335px 相当 */
+        width: 89.3vw;
+        max-width: 89.3vw;
+        /* 40px 相当 */
+        padding-bottom: 10.6vw;
+        margin: 0 auto;
+    }
+    .sec03 p {
+        /* 12px 相当 */
+        font-size: 3.2vw;
+    }
+    .sec03::after {
+        /* 223px 相当 */
+        width: 59.4vw;
+    }
+
+    /* sectionタイトル */
+    .sec03 .sectionTitle {
+        /* 60px 相当 */
+        margin: 0 auto 16vw;
+        /* 24px 相当 */
+        font-size: 6.4vw;
+    }
+    .sec03 .sectionTitle::before {
+        /* 220px / 40px 相当 */
+        width: 58.6vw;
+        max-width: 58.6vw;
+        height: 10.6vw;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .sec03 h3 span {
+        /* 12px 相当 */
+        font-size: 3.2vw;
+    }
+    .sec03 h4, .sec03 .intro {
+        margin: 0 auto;
+        /* 223px 相当 */
+        width: 59.4vw;
+        max-width: 59.4vw;
+        text-align: justify;
+    }
+    .sec03 h4 {
+        /* 24px / 12px 相当 */
+        font-size: 6.4vw;
+        padding-bottom: 3.2vw;
+    }
+    .sec03 .intro {
+        /* 12px / 40px 相当 */
+        padding: 3.2vw 0 10.6vw;
+    }
+
+    .sec03 .innerWrap, .image05 {
+        display: block;
+        padding: 0;
+        height: auto;
+        text-align: center;
+    }
+
+    .sec03 .innerWrap:nth-of-type(2) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sec03 .SP {
+        display: flex;
+        justify-content: space-between;
+        /* 20px 相当 */
+        gap: 5.3vw;
+    }
+
+    /* コンテンツ幅の変更 */
+    .sec03 .image02, .sec03 .image03 {
+        max-width: 50%;
+    }
+    .sec03 .image01, .sec03 .note01, .sec03 .note02, .image05 {
+        /* 223px 相当 */
+        width: 59.4vw;
+        max-width: 59.4vw;
+        /* 20px 相当 */
+        margin: 0 auto 5.3vw;
+    }
+
+    .sec03 .image02,
+    .sec03 .image03 {
+        /* 157.5px / 81px 相当 */
+        width: 42vw;
+        max-width: 42vw;
+        height: 21.6vw;
+        object-fit: cover;
+    }
+
+    .sec03 .image04,
+    .sec03 .image05 img {
+        /* 175px 相当 */
+        width: 46.6vw;
+        max-width: 46.6vw;
+        /* 20px 相当 */
+        margin-bottom: 5.3vw;
+    }
+
+    .sec03 .note02, .sec03 .image05 p {
+        text-align: justify;
+        /* 20px 相当 */
+        margin-bottom: 5.3vw;
+    }
+
+    /* 画像切り替え */
+    .sec03 .image01 { content: url("../images/spSec030101.png"); }
+    .sec03 .image02 { content: url("../images/spSec030102.png"); }
+    .sec03 .image03 { content: url("../images/spSec030103.png"); }
+    .sec03 .image04 { content: url("../images/spSec030104.png"); }
+    .sec03 .image05 img { content: url("../images/spSec030105.png"); }
+}
+
+/* ============================= */
+/* footer */
+/* ============================= */
+
+footer {
+    background-color: #007AB7;
+    color: #fff;
+    min-height: 35.8vw;
+}
+
+.spHeaderOnly {
+    display: none; /* PC版では完全に隠す */
+}
+
+.footer-inner {
+    max-width: 88vw;
+    margin: 0 auto;
+    padding: 2.5vw 1vw 1.5vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.2vw;
+}
+
+.footer-flag {
+    text-align: center;
+    margin-bottom: 1vw;
+}
+.footer-flag img {
+    width: 4.45vw;
+}
+
+.footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.footer-nav a {
+    position: relative;
+    display: inline-block;
+    width: 12vw;
+    color: #fff;
+    font-size: 1.5vw;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* ボーダーを文字から独立 */
+.footer-nav a::after {
+    content: "";
+    display: block;
+    width: clamp(22vw, 14vw, 22vw);   /* ←文章より長く */
+    height: 2px;
+    background-color: rgba(255,255,255,0.6);
+}
+
+.footer-logo img {
+    height: 7.54vw;
+}
+
+.footer-sns {
+    list-style: none;
+    display: flex;
+    gap: 2.8vw;
+}
+.footer-sns img {
+    width: 2vw;
+    height: auto;
+}
+
+.footer-copyright {
+    position: relative;
+    text-align: center;
+    padding-top: 1.5vw;
+}
+.footer-copyright::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background-color: #03A9F4;
+}
+
+/* ============================= */
+/* SP版 footer 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    footer {
+        /* 349px 相当 */
+        height: 93vw;
+        min-height: 93vw;
+    }
+
+    .footer-inner {
+        max-width: 100%;
+        /* 20.5px 18px 相当 */
+        padding: 5.4vw 5.4vw 4.8vw 5.4vw;
+    }
+
+    /* 国旗：フッターの一番上に中央配置 */
+    .footer-flag {
+        text-align: center;
+        /* 12px 相当 */
+        margin-bottom: 3.2vw;
+    }
+    .footer-flag img {
+        /* 32px 相当 */
+        width: 8.5vw;
+        max-width: 8.5vw;
+    }
+
+    /* footer-mainをグリッドに変更 */
+    .footer-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            ". nav ."
+            "logo sns .";
+        /* 32px 相当 */
+        row-gap: 8.5vw;
+        align-items: center;
+        /* 24px 相当 */
+        margin-bottom: 6.4vw;
+    }
+
+    /* ナビ：中央列 */
+    .footer-nav {
+        grid-area: nav;
+        justify-self: center;
+    }
+    .footer-nav ul {
+        align-items: flex-start;
+        /* 5px 相当 */
+        gap: 1.3vw;
+    }
+    .footer-nav a {
+        /* 12px 相当 */
+        font-size: 3.2vw;
+        text-align: left;
+        width: auto;
+    }
+    /* ボーダーをモバイル幅に合わせる */
+    .footer-nav a::after {
+        /* 160px 相当 */
+        width: 42.6vw;
+        max-width: 42.6vw;
+    }
+
+    /* ロゴ：左列 */
+    .footer-logo {
+        grid-area: logo;
+        justify-self: stretch;
+        text-align: right;
+    }
+    .footer-logo img {
+        /* 71px 相当 */
+        width: 18.9vw;
+        max-width: 18.9vw;
+        display: inline-block;
+    }
+
+    /* SNS：中央列 */
+    .footer-sns {
+        grid-area: sns;
+        justify-self: center;
+        /* 16px 相当 */
+        gap: 4.2vw;
+    }
+    .footer-sns img {
+        /* 32px 相当 */
+        width: 8.5vw;
+        max-width: 8.5vw;
+    }
+
+    /* コピーライト */
+    .footer-copyright {
+        /* 10px 相当 */
+        font-size: 2.6vw;
+        padding-top: 0;
+    }
+
+    .footer-copyright::before {
+        content: "";
+        position: absolute;
+        /* -10px 相当 */
+        top: -2.6vw;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        /* 1px 相当 */
+        height: 0.26vw;
+        background-color: #03A9F4;
+    }
+}
+
+/* ============================= */
+/* スクロールトップボタン */
+/* ============================= */
+
+.page-top {
+    position: fixed;
+    right: 20px;
+    bottom: 62px;
+    width: 8vw;
+    height: 2.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    cursor: pointer;
+}
+.page-top img {
+    width: 6vw;
+    height: auto;
+}
+
+/* ============================= */
+/* SP版 スクロールトップ 専用スタイル (768px以下) */
+/* ============================= */
+
+@media screen and (max-width: 768px) {
+    .page-top {
+        position: fixed;
+        right: 4.5vw;
+        bottom: 22vw;
+        width: 8vw;
+        height: 2.5vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        cursor: pointer;
+    }
+    .page-top img {
+        width: 12.8vw;
+        max-width: 12.8vw;
+        height: auto;
+    }
+}
+
+/* ============================= */
+/* ローディングアニメーション */
+/* ============================= */
+
+#loading {
+    display: flex; /* 初期状態では非表示 */
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #007AB7;
+    z-index: 9999;
+    text-align: center;
+}
+#loading img {
+    width: 23.28vw;
+    height: auto;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: loadingAnimation 1s ease;
+}
+
+/* アニメーション */
+@keyframes loadingAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 100%; }
+}
+
+@media screen and (max-width: 768px) {
+    #loading img {
+        width: 76.53vw; /* 287px */
+    }
+}
