@@ -696,7 +696,6 @@ footer {
 /* ローディングアニメーション */
 /* ============================= */
 #loading {
-  display: none; /* 初期状態では非表示 */
   position: fixed;
   top:0;
   left: 0;
@@ -704,21 +703,21 @@ footer {
   height: 100vh;
   background-color: #007AB7;
   z-index: 9999;
-  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #loading img {
   width: 318px;
   height: auto;
-  position: absolute;
-  top:50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: loadingAnimation 1s ease;
+  animation: loadingAnimation ease 3s forwards;
 }
 /* アニメーション */
 @keyframes loadingAnimation {
   0% { opacity: 0; }
-  100% { opacity: 100%; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* =========================================== */
