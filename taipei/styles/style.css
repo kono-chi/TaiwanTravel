@@ -1879,32 +1879,30 @@ footer {
 /* ローディングアニメーション */
 /* ============================= */
 #loading {
-    display: none;
-    position: fixed;
-    top:0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #007AB7;
-    z-index: 9999;
-    text-align: center;
-}
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #007AB7;
+  z-index: 9999;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #loading img {
-    width: 23.28vw;
-    height: auto;
-    position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: loadingAnimation 1s ease;
+  width: 318px;
+  height: auto;
+  animation: loadingAnimation ease 3s forwards;
 }
-
 /* アニメーション */
 @keyframes loadingAnimation {
-    0% { opacity: 0; }
-    100% { opacity: 100%; }
+  0% { opacity: 0; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
+
 @media screen and (max-width: 768px) {
     #loading img {
         width: 76.53vw; /* 287px */
